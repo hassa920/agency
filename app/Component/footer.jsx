@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import '../css/footer.css'
 import Image from 'next/image';
 
@@ -34,11 +35,9 @@ export default function Footer() {
           <div className="footer-column">
             <h3 className="footer-column-title">Company:</h3>
             <ul className="footer-link-list">
-              <li><a href="#about" className="footer-link">About Us</a></li>
-              <li><a href="#projects" className="footer-link">Our Work</a></li>
-              <li><a href="#contact" className="footer-link">Get in Touch</a></li>
-              <li><a href="#privacy" className="footer-link">Privacy Policy</a></li>
-              <li><a href="#terms" className="footer-link">Terms of Service</a></li>
+              <li><Link href="/about" className="footer-link">About Us</Link></li>
+              <li><Link href="/contact" className="footer-link">Get in Touch</Link></li>
+
             </ul>
           </div>
 
