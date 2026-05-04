@@ -1,31 +1,37 @@
-:root {
-  --font-retimoa: "Retimoa Straight";
-}
-
-/* global resets + use the two loaded fonts (Retimoa first, Inter fallback) */
-html, body, #__next {
-  height: 100%;
-  font-family: var(--font-retimoa), Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-synthesis: none; /* do not synthesize bold/italic */
-  font-weight: 500;     /* default weight */
-}
-
+/* ===== Global Reset ===== */
 body {
   margin: 0;
   padding: 0;
-  background-color: #000;
+  font-weight: 400;
 }
 
-/* global inherit rule is OK */
-* { font-weight: inherit; }
-
-/* If you only want specific elements to be thin, use a class below */
-.thin {
-  font-weight: 500;
-  font-family: var(--font-retimoa), Inter, system-ui;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-/* If you want to force-all thin (temporary debugging only) */
-/* body * { font-weight: 100 !important; }  -- avoid long-term */
+/* ===== Font ===== */
+@font-face {
+  font-family: 'Retimoa';
+  src: url('/fonts/Retimoa Straight.otf') format('opentype');
+  font-weight: 100 900;
+  font-style: normal;
+}
+
+/* ===== Root Variables ===== */
+:root {
+  --font-retimoa:       'Retimoa', sans-serif;
+  --color-primary:      #4a03f7;
+  --color-primary-dark: #1a0066;
+  --color-primary-tint: #f3eeff;
+  --color-bg:           #ffffff;
+  --color-text:         #1a1a1a;
+  --color-text-muted:   #595959;
+}
+
+/* ===== Font Weight Utilities ===== */
+.fw-light  { font-family: var(--font-retimoa); font-weight: 300; }
+.fw-normal { font-family: var(--font-retimoa); font-weight: 400; }
+.fw-bold   { font-family: var(--font-retimoa); font-weight: 700; }
+.fw-black  { font-family: var(--font-retimoa); font-weight: 900; -webkit-text-stroke: 0.5px; }

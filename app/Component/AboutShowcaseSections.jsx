@@ -4,52 +4,52 @@ import GetStartedButton from "./GetStartedButton";
 const principleCards = [
   {
     id: "ai-analytics",
-    title: "Data-Driven Results",
+    title: "Insight-Led Decisions",
     description:
-      "We use analytics and AI insights to guide every decision, so campaigns stay measurable and profitable.",
+      "We rely on data, analytics, and intelligent insights to guide strategies that deliver consistent and measurable outcomes.",
   },
   {
     id: "automation",
-    title: "Smart Automation",
+    title: "Efficient Systems",
     description:
-      "From lead capture to follow-up workflows, automation helps your team save time and scale faster.",
+      "We build streamlined processes and automation flows that reduce manual effort and improve operational speed.",
   },
   {
     id: "growth",
-    title: "Sustainable Growth",
+    title: "Long-Term Performance",
     description:
-      "Our process combines strategy, performance testing, and optimization to create long-term growth.",
+      "Our focus is on sustainable progress through continuous testing, refinement, and performance optimization.",
   },
 ];
 
 const stats = [
-  { id: "years", value: "10+", label: "Years Experience" },
-  { id: "projects", value: "30+", label: "Completed Projects" },
-  { id: "partners", value: "08", label: "Trusted Partners" },
+  { id: "years", value: "8+", label: "Years in Industry" },
+  { id: "projects", value: "50+", label: "Projects Delivered" },
+  { id: "partners", value: "12", label: "Active Collaborations" },
 ];
 
 const stories = [
   {
     id: "story-1",
-    title: "The Challenge of Visibility",
+    title: "Building Strong Online Presence",
     description:
-      "A fast-growing team needed stronger visibility and quality leads. We rebuilt their digital funnel.",
+      "A growing brand needed better visibility. We restructured their digital presence to attract the right audience.",
     image:
       "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80",
   },
   {
     id: "story-2",
-    title: "From Traffic to Revenue",
+    title: "Improving Conversion Flow",
     description:
-      "We redesigned content paths and conversion points to turn ad traffic into predictable revenue.",
+      "We optimized user journeys and messaging to turn website visitors into consistent customers.",
     image:
       "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=900&q=80",
   },
   {
     id: "story-3",
-    title: "Scaling with Confidence",
+    title: "Scaling Digital Campaigns",
     description:
-      "By combining AI targeting and automation, the client scaled campaigns while reducing wasted spend.",
+      "Through better targeting and automation, campaigns were scaled efficiently while reducing unnecessary costs.",
     image:
       "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=900&q=80",
   },
@@ -60,13 +60,13 @@ const AboutHero = () => {
     <section className="about-hero">
       <div className="about-shell about-hero-grid">
         <div className="about-hero-copy">
-          <p className="about-tag">AI Powered Agency</p>
-          <h1>Empowering Your Business With AI-Driven Innovation</h1>
+          <p className="about-tag">Modern Digital Agency</p>
+          <h1>Helping Businesses Grow Through Smart Digital Solutions</h1>
           <p>
-            We blend strategic thinking, modern design, and intelligent automation to
-            deliver business results that are faster, clearer, and built to scale.
+            We combine strategy, creativity, and modern technology to build
+            solutions that drive real business progress and long-term success.
           </p>
-          <GetStartedButton text="Get Started" className="project-btn about-hero-btn" />
+          <GetStartedButton text="Start Now" className="project-btn about-hero-btn" />
         </div>
         <div className="about-hero-visual" aria-hidden="true">
           <img
@@ -103,10 +103,10 @@ const AboutInnovation = () => {
           />
         </div>
         <div className="about-innovation-copy">
-          <h2>Harnessing Artificial Intelligence for Innovative Solutions</h2>
+          <h2>Turning Ideas Into Practical Digital Solutions</h2>
           <p>
-            We help brands unlock new opportunities with AI-based workflows, optimized
-            customer journeys, and performance systems designed for real growth.
+            We help businesses improve workflows, enhance user experience,
+            and create systems that support consistent growth in a digital-first world.
           </p>
         </div>
       </div>
@@ -119,7 +119,7 @@ const CorePrinciples = () => {
     <section className="about-principles">
       <div className="about-shell">
         <div className="about-principles-head">
-          <h2>Core Principles Driving Your AI Commitment to Innovation and Impact</h2>
+          <h2>Our Approach to Delivering Consistent Results</h2>
           <div className="about-principles-gem" aria-hidden="true">
             <span>SEO</span>
           </div>
@@ -157,7 +157,7 @@ const ClientStories = () => {
   return (
     <section className="about-stories">
       <div className="about-shell">
-        <h2>What Our Clients Says</h2>
+        <h2>Success Stories</h2>
         <div className="about-stories-grid">
           {stories.map((story) => (
             <article key={story.id} className="about-story-card">

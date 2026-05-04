@@ -2,44 +2,44 @@ import React from "react";
 import "../css/service.css";
 
 const serviceItems = [
-  "Web Design and Development",
-  "Graphic Design and Branding",
-  "Social Media Strategy and Marketing",
-  "Search Engine Optimization (SEO)",
+  "Custom Website Design & Development",
+  "Brand Identity & Visual Design",
+  "Social Media Growth & Management",
+  "Search Visibility & SEO Optimization",
 ];
 
-const clients = ["MS", "SMART WORKPLACE", "A", "M", "K", "G", "U"];
+const clients = ["NX", "DIGI HUB", "Z", "R", "T", "L", "Q"];
 
 const faqs = [
   {
     id: "faq-1",
-    question: "What is AIO Services, and how can it help my business?",
+    question: "What are digital growth services, and why do they matter?",
     answer:
-      "AIO services combine web development, SEO, social media, branding, and creative production into one streamlined package to help you grow faster.",
+      "Digital growth services combine design, marketing, and optimization into one strategy to help businesses attract more customers and scale efficiently.",
   },
   {
     id: "faq-2",
-    question: "Can I choose specific services or only full packages?",
+    question: "Can I select only the services I need?",
     answer:
-      "Yes, you can choose individual services or a complete plan depending on your project goals and timeline.",
+      "Yes, our solutions are flexible—you can choose individual services or a complete package based on your goals.",
   },
   {
     id: "faq-3",
-    question: "How quickly can I launch with your service team?",
+    question: "How soon can we get started?",
     answer:
-      "Most businesses begin implementation within a few days after discovery and planning.",
+      "Most projects begin within a few days after initial discussion and planning.",
   },
   {
     id: "faq-4",
-    question: "Do you provide ongoing support after project delivery?",
+    question: "Do you offer support after project completion?",
     answer:
-      "Absolutely. We offer continuous optimization, reporting, and support to keep your growth steady.",
+      "Yes, we provide ongoing support, updates, and optimization to ensure long-term success.",
   },
   {
     id: "faq-5",
-    question: "Why should I choose Yours AIO Services over one single agency?",
+    question: "What makes your services different from others?",
     answer:
-      "You receive one collaborative team for every digital touchpoint, reducing delays and improving quality consistency.",
+      "We offer a unified approach where design, marketing, and strategy work together, ensuring better results and smoother execution.",
   },
 ];
 
@@ -49,19 +49,18 @@ const Service = () => {
       <section className="services-hero">
         <div className="services-shell">
           <div className="services-hero-copy">
-            <h1>Yours AIO Services</h1>
+            <h1>Digital Growth Services</h1>
             <p>
-              We deliver complete digital growth services designed to scale your
-              brand with strategy, creativity, and performance. From websites to
-              marketing automation, everything is built to drive real business
-              results.
+              We provide end-to-end digital solutions that help businesses grow
+              faster. From building powerful websites to executing smart marketing
+              strategies, everything we do is focused on real results and long-term success.
             </p>
             <div className="services-hero-actions">
               <button type="button" className="services-primary-btn">
-                Learn More <span>→</span>
+                Discover More <span>→</span>
               </button>
               <a href="#" className="services-crumb-btn">
-                Home <span>&gt;</span> Our Services
+                Home <span>&gt;</span> Services
               </a>
             </div>
           </div>
@@ -73,12 +72,12 @@ const Service = () => {
 
       <section className="services-offer">
         <div className="services-shell">
-          <h2>AIO Services we offer</h2>
+          <h2>Solutions We Provide</h2>
           <div className="services-offer-grid">
             <article className="services-offer-card">
               <img
                 src="https://images.unsplash.com/photo-1518773553398-650c184e0bb3?auto=format&fit=crop&w=1200&q=80"
-                alt="AIO services visual"
+                alt="Digital services overview"
               />
             </article>
             <ul className="services-offer-list">
@@ -92,7 +91,7 @@ const Service = () => {
 
       <section className="services-clients">
         <div className="services-shell">
-          <h2>Our Clients</h2>
+          <h2>Brands We Work With</h2>
           <div className="services-client-strip">
             {clients.map((client) => (
               <div key={client} className="services-client-logo">
@@ -108,37 +107,35 @@ const Service = () => {
           <article className="services-highlight-card">
             <div className="services-highlight-top">
               <div>
-                <h2>Best AIO Services Where AI Meets Expertise</h2>
+                <h2>Smart Strategies Backed by Real Experience</h2>
                 <p>
-                  We combine data-driven strategy and expert execution to deliver
-                  websites, campaigns, and content that actually convert.
+                  We blend creativity with data-driven insights to build digital
+                  experiences that attract, engage, and convert your audience.
                 </p>
                 <button type="button" className="services-primary-btn">
-                  Learn More <span>→</span>
+                  Explore More <span>→</span>
                 </button>
               </div>
               <img
                 src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80"
-                alt="Team working on digital services"
+                alt="Digital team collaboration"
               />
             </div>
             <div className="services-highlight-bottom">
               <img
                 src="https://images.unsplash.com/photo-1549692520-acc6669e2f0c?auto=format&fit=crop&w=500&q=80"
-                alt="Digital specialist portrait"
+                alt="Creative professional"
               />
               <div>
-                <h3>Innovative Digital</h3>
+                <h3>Creative Approach</h3>
                 <p>
-                  Integrated planning, design, and automation for impactful
-                  digital growth.
+                  We design solutions that are not only functional but also visually impactful.
                 </p>
               </div>
               <div>
-                <h3>Why Choose Us</h3>
+                <h3>Why Work With Us</h3>
                 <p>
-                  Dedicated experts, transparent communication, and measurable
-                  performance every step.
+                  Clear communication, consistent delivery, and strategies focused on measurable growth.
                 </p>
               </div>
             </div>
@@ -148,7 +145,7 @@ const Service = () => {
 
       <section className="services-faq">
         <div className="services-shell">
-          <h2>Frequently Asked Question</h2>
+          <h2>Common Questions</h2>
           <div className="services-faq-list">
             {faqs.map((faq, idx) => (
               <details key={faq.id} open={idx === 0}>
@@ -164,48 +161,41 @@ const Service = () => {
         <div className="services-shell services-contact-grid">
           <div className="services-contact-left">
             <div className="services-hand">🤝</div>
-            <h2>Let&apos;s start project together!</h2>
+            <h2>Let’s build something great together</h2>
             <p>
-              Tell us about your goals and we&apos;ll craft the right plan for
-              your brand.
+              Share your ideas with us and we’ll help turn them into a powerful digital experience.
             </p>
             <div className="services-socials">
-              <a href="#" aria-label="Facebook">
-                f
-              </a>
-              <a href="#" aria-label="LinkedIn">
-                in
-              </a>
-              <a href="#" aria-label="Instagram">
-                ig
-              </a>
+              <a href="#" aria-label="Facebook">f</a>
+              <a href="#" aria-label="LinkedIn">in</a>
+              <a href="#" aria-label="Instagram">ig</a>
             </div>
           </div>
           <form className="services-contact-form">
             <div className="services-form-grid">
               <label>
-                What is your name?*
+                Your name*
                 <input type="text" name="name" required />
               </label>
               <label>
-                What company do you represent?
+                Company name
                 <input type="text" name="company" />
               </label>
               <label>
-                Phone number?*
+                Phone number*
                 <input type="tel" name="phone" required />
               </label>
               <label>
-                E-mail?*
+                Email address*
                 <input type="email" name="email" required />
               </label>
             </div>
             <label className="services-form-message">
-              A few words about your project*
+              Tell us about your project*
               <textarea rows={4} name="message" required></textarea>
             </label>
             <button type="submit" className="services-send-btn">
-              Send
+              Submit
             </button>
           </form>
         </div>

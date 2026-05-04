@@ -8,29 +8,33 @@ import '../css/topbar.css'
 
 const TopBar = () => {
   return (
-    <div className="topbar">
-      <div className="topbar-left">
-        <FiZap size={16} className="topbar-icon" />
-        <span>Celebrating 10 years : 2015 – 2025</span>
-      </div>
+    <div className="topbar-wrapper">
+      <div className="topbar">
 
-      <div className="topbar-right">
-        <FiPhone size={16} className="topbar-icon" />
-        <span>Call us: <strong> +18885811741</strong></span>
+        <div className="topbar-left">
+          <FiZap size={16} className="topbar-icon" />
+          <span>Empowering Businesses Since 2016</span>
+        </div>
 
-        <span className="divider">|</span>
+        <div className="topbar-right">
+          <FiPhone size={16} className="topbar-icon" />
+          <span>Speak with us: <strong>+1 888 581 1741</strong></span>
 
-        <Link href="#" aria-label="Facebook">
-          <FaFacebook size={16} />
-        </Link>
+          <span className="divider">|</span>
 
-        <Link href="#" aria-label="LinkedIn">
-          <FaLinkedin size={16} />
-        </Link>
+          <Link href="#" aria-label="Facebook">
+            <FaFacebook size={16} />
+          </Link>
 
-        <Link href="#" aria-label="Instagram">
-          <FaInstagram size={16} />
-        </Link>
+          <Link href="#" aria-label="LinkedIn">
+            <FaLinkedin size={16} />
+          </Link>
+
+          <Link href="#" aria-label="Instagram">
+            <FaInstagram size={16} />
+          </Link>
+        </div>
+
       </div>
     </div>
   )

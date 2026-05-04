@@ -10,15 +10,15 @@ const Page = () => {
       <section className="project-hero">
         <div className="project-overlay"></div>
         <div className="project-content">
-          <h1>Our Featured Projects</h1>
+          <h1>Our Work & Case Studies</h1>
           <p>
-            Explore a collection of our best work, showcasing the quality,
-            creativity, and expertise we bring to every project. Each project
-            reflects our commitment to delivering outstanding results, whether
-            it&apos;s through innovative design, seamless functionality, or
-            impactful strategies. Browse through the details below to see how
-            we&apos;ve helped our clients achieve success and how we can bring the
-            same level of excellence to your project.
+            Take a look at some of the projects we’ve delivered for our clients.
+            Each project highlights our ability to combine creativity,
+            strategy, and technology to build solutions that perform.
+            From modern designs to scalable systems, our work reflects
+            a focus on real impact and measurable growth.
+            Explore how we turn ideas into successful digital experiences—
+            and how we can do the same for you.
           </p>
 
           <GetStartedButton />

@@ -1,55 +1,30 @@
-
-:root {
-  /* 🎨 Colors */
-  --e-global-color-primary: #6EC1E4;
-  --e-global-color-secondary: #54595F;
-  --e-global-color-text: #7A7A7A;
-  --e-global-color-accent: #61CE70;
-  --e-global-color-4c53b1e: #42047E;
-  --e-global-color-8adc45d: #07F49E;
-  --e-global-color-0d2387d: #FFFFFF;
-  --e-global-color-bfefdf6: #000000;
-
-  /* 🔤 Typography */
-  --e-global-typography-primary-font-family: "Roboto", sans-serif;
-  --e-global-typography-primary-font-weight: 600;
-
-  --e-global-typography-secondary-font-family: "Roboto Slab", serif;
-  --e-global-typography-secondary-font-weight: 400;
-
-  --e-global-typography-text-font-family: "Roboto", sans-serif;
-  --e-global-typography-text-font-weight: 400;
-
-  --e-global-typography-accent-font-family: "Roboto", sans-serif;
-  --e-global-typography-accent-font-weight: 500;
+/* ===== Header Wrapper ===== */
+.header-wrapper {
+  background: var(--color-primary-dark);
+  width: 100%;
 }
 
-
-/* Header container */
+/* ===== Header ===== */
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 20px;
-  background: #000000;
-  max-width: 1100px;  
-  width: 100%;  
+  max-width: 1100px;
+  width: 100%;
   height: 100px;
-  border-radius: 8px;
-  box-shadow: 0 3px 21px 0 rgb(128 0 128 / .2);
-  margin: 0 auto;   /* ← centers the header horizontally */
-  transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
- 
+  margin: 0 auto;
+  transition: all 0.3s ease;
 }
 
 .header img {
-  height: 60px;        /* fits inside 100px header */
-  width: auto;         /* keeps aspect ratio */
+  height: 60px;
+  width: auto;
   object-fit: contain;
-  flex-shrink: 0;      /* ⚠️ critical — stops flex from squishing it */
+  flex-shrink: 0;
 }
 
-/* Nav links */
+/* ===== Nav ===== */
 .nav {
   display: flex;
   gap: 30px;
@@ -57,62 +32,44 @@
 
 .nav a {
   text-decoration: none;
-  color: #ffffff;
-  font-size: 16px;
-  transition: 0.3s;
+  color: rgba(255, 255, 255, 0.85);
   font-size: 18px;
   font-weight: 700;
+  transition: color 0.3s ease;
 }
 
-/* Active link */
-.nav .active {
+.nav a:hover {
+  color: #ffffff;
+}
 
+.nav .active {
+  color: #ffffff;
+  border-bottom: 2px solid #ffffff;
   padding-bottom: 4px;
 }
 
-/* Hover effect */
-.nav a:hover {
-  color: #a855f7;
-}
-
-/* Button */
+/* ===== Button ===== */
 .btn {
-background-color: var(--e-global-color-4c53b1e);
-
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 20px;
-    fill: var(--e-global-color-0d2387d);
-    color: var(--e-global-color-0d2387d);
-    border-style: solid;
-    border-width: 1px 1px 1px 1px;
-    border-color: var(--e-global-color-0d2387d);
-    border-radius: 8px 8px 8px 8px;
-    padding: 15px 20px 15px 20px;
-
+  background-color: #ffffff;
+  color: var(--color-primary);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+  border: 1px solid #ffffff;
+  border-radius: 8px;
+  padding: 10px 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 120px;
 }
 
-/* ===== Modern Fix + Advanced Responsive (No Horizontal Scroll) ===== */
-
-/* Prevent ALL horizontal overflow globally */
-html, body {
-  overflow-x: hidden;
+.btn:hover {
+  background-color: var(--color-primary-tint);
+  border-color: var(--color-primary-tint);
 }
 
-/* Make box model modern (fixes width overflow issues) */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
+/* ===== Responsive ===== */
 
-/* Ensure header never exceeds screen */
-.header {
-  width: 100%;
-  max-width: 1100px;
-}
-
-/* Large screens */
 @media (min-width: 1280px) {
   .header {
     max-width: 1200px;
@@ -120,7 +77,6 @@ html, body {
   }
 }
 
-/* Tablets */
 @media (max-width: 1024px) {
   .header {
     max-width: 95%;
@@ -133,7 +89,6 @@ html, body {
   }
 }
 
-/* Small tablets */
 @media (max-width: 768px) {
   .header {
     height: auto;
@@ -151,7 +106,7 @@ html, body {
     order: 3;
     width: 100%;
     justify-content: center;
-    flex-wrap: wrap; /* 🔥 prevents overflow */
+    flex-wrap: wrap;
     gap: 12px;
   }
 
@@ -165,11 +120,10 @@ html, body {
   }
 }
 
-/* Mobile phones */
 @media (max-width: 480px) {
   .header {
     padding: 10px;
-    border-radius: 0; /* modern full-width mobile look */
+    border-radius: 0;
   }
 
   .header img {
@@ -190,7 +144,6 @@ html, body {
   }
 }
 
-/* Extra small devices */
 @media (max-width: 360px) {
   .nav {
     gap: 8px;
@@ -204,11 +157,4 @@ html, body {
     font-size: 12px;
     padding: 7px 10px;
   }
-}
-
-/* Smooth modern UI feel */
-.header,
-.nav a,
-.btn {
-  transition: all 0.3s ease;
 }

@@ -14,8 +14,11 @@ const StartProjectContact = () => {
           <div className="start-project-badge" aria-hidden="true">
             🤝
           </div>
-          <h2>Let&apos;s start project together!</h2>
-          <p>Tired of Digital Chaos? We Bring Clarity, Control, and Results.</p>
+          <h2>Let’s build something great together</h2>
+          <p>
+            Looking to grow your business online? We create strategies and solutions
+            that bring clarity, consistency, and real results.
+          </p>
 
           <div className="start-project-socials" aria-label="Social links">
             {socialLinks.map((social) => (
@@ -29,34 +32,34 @@ const StartProjectContact = () => {
         <form className="start-project-form">
           <div className="start-project-field-grid">
             <label className="start-project-field">
-              <span>What is your name?*</span>
+              <span>Your name*</span>
               <input type="text" name="name" required />
             </label>
 
             <label className="start-project-field">
-              <span>What company do you represent?</span>
+              <span>Company name</span>
               <input type="text" name="company" />
             </label>
 
             <label className="start-project-field">
-              <span>Phone number?*</span>
+              <span>Phone number*</span>
               <input type="tel" name="phone" required />
             </label>
 
             <label className="start-project-field">
-              <span>E-mail?*</span>
+              <span>Email address*</span>
               <input type="email" name="email" required />
             </label>
           </div>
 
           <label className="start-project-field start-project-textarea">
-            <span>A few words about your project*</span>
+            <span>Tell us about your project*</span>
             <textarea name="message" rows={4} required />
           </label>
 
           <button type="submit" className="start-project-submit-btn">
             <span className="start-project-submit-icon">→</span>
-            Send
+            Submit
           </button>
         </form>
       </div>

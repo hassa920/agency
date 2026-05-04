@@ -1,5 +1,5 @@
 .footer {
-  background-color: #0a0a0a;
+  background-color: var(--color-primary-dark);
   color: #e0e0e0;
 }
 
@@ -23,23 +23,12 @@
 }
 
 .footer-logo {
-  display: inline-block;
-  width: fit-content;
-}
-
-.footer-logo-text {
-  font-size: 32px;
-  font-weight: 700;
-  background: linear-gradient(135deg, #1dd1a1 0%, #00d2d3 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  letter-spacing: -1px;
+  margin-right: 20px;
 }
 
 .footer-tagline {
   font-size: 14px;
-  color: #999;
+  color: rgba(255, 255, 255, 0.6);
   line-height: 1.6;
   margin: 0;
   max-width: 200px;
@@ -69,7 +58,7 @@
 }
 
 .footer-link {
-  color: #999;
+  color: rgba(255, 255, 255, 0.6);
   text-decoration: none;
   font-size: 14px;
   transition: color 0.3s ease;
@@ -77,7 +66,7 @@
 }
 
 .footer-link:hover {
-  color: #1dd1a1;
+  color: #ffffff;
 }
 
 .footer-newsletter {
@@ -95,7 +84,7 @@
 .footer-bell-icon {
   width: 45px;
   height: 45px;
-  background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+  background: rgba(255, 255, 255, 0.15);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -117,24 +106,24 @@
 }
 
 .footer-email-input {
-  background-color: transparent;
-  border: 1px solid #333;
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 6px;
   padding: 12px 16px;
-  color: #e0e0e0;
+  color: #ffffff;
   font-size: 14px;
   font-family: inherit;
   box-sizing: border-box;
 }
 
 .footer-email-input::placeholder {
-  color: #666;
+  color: rgba(255, 255, 255, 0.4);
 }
 
 .footer-email-input:focus {
   outline: none;
-  border-color: #1dd1a1;
-  box-shadow: 0 0 0 2px rgba(29, 209, 161, 0.2);
+  border-color: var(--color-primary-tint);
+  box-shadow: 0 0 0 2px rgba(243, 238, 255, 0.2);
 }
 
 .footer-checkbox-container {
@@ -142,14 +131,14 @@
   align-items: center;
   gap: 10px;
   font-size: 12px;
-  color: #999;
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .footer-checkbox {
   width: 18px;
   height: 18px;
   cursor: pointer;
-  accent-color: #1dd1a1;
+  accent-color: var(--color-primary-tint);
 }
 
 .footer-checkbox-label {
@@ -158,21 +147,21 @@
 }
 
 .footer-subscribe-btn {
-  background: linear-gradient(135deg, #1dd1a1 0%, #00d2d3 100%);
-  color: #000;
+  background: #ffffff;
+  color: var(--color-primary);
   border: none;
   border-radius: 6px;
   padding: 12px 24px;
   font-weight: 600;
   font-size: 14px;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: all 0.2s ease;
   font-family: inherit;
 }
 
 .footer-subscribe-btn:hover {
+  background: var(--color-primary-tint);
   transform: translateY(-2px);
-  box-shadow: 0 8px 16px rgba(29, 209, 161, 0.3);
 }
 
 .footer-phone-number {
@@ -194,15 +183,15 @@
 }
 
 .footer-phone-link:hover {
-  color: #1dd1a1;
+  color: var(--color-primary-tint);
 }
 
 .footer-bottom-bar {
-  background: linear-gradient(90deg, #1dd1a1 0%, #00d2d3 50%, #6d28d9 100%);
+  background: rgba(255, 255, 255, 0.08);
   padding: 20px;
   text-align: center;
   font-size: 14px;
-  color: #ffffff;
+  color: rgba(255, 255, 255, 0.7);
   font-weight: 500;
 }
 
@@ -211,10 +200,9 @@
 }
 
 /* ============================================
-   RESPONSIVE DESIGN - MEDIA QUERIES
+   RESPONSIVE
    ============================================ */
 
-/* Tablet Screens (768px to 1024px) */
 @media (max-width: 1024px) {
   .footer-container {
     padding: 50px 20px 0;
@@ -226,10 +214,6 @@
     margin-bottom: 50px;
   }
 
-  .footer-logo-text {
-    font-size: 28px;
-  }
-
   .footer-column-title {
     font-size: 16px;
   }
@@ -239,7 +223,6 @@
   }
 }
 
-/* Mobile Screens (480px to 767px) */
 @media (max-width: 767px) {
   .footer-container {
     padding: 40px 16px 0;
@@ -249,10 +232,6 @@
     grid-template-columns: 1fr;
     gap: 30px;
     margin-bottom: 40px;
-  }
-
-  .footer-logo-text {
-    font-size: 24px;
   }
 
   .footer-tagline {
@@ -292,7 +271,6 @@
   }
 }
 
-/* Small Mobile Screens (below 480px) */
 @media (max-width: 479px) {
   .footer-container {
     padding: 30px 12px 0;
@@ -302,10 +280,6 @@
     grid-template-columns: 1fr;
     gap: 25px;
     margin-bottom: 30px;
-  }
-
-  .footer-logo-text {
-    font-size: 20px;
   }
 
   .footer-tagline {

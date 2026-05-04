@@ -8,7 +8,9 @@ import Image from 'next/image'
 const Header = () => {
     const pathname=usePathname()
   return (
-    <header className="header">
+    <div className='header-wrapper'>
+
+      <header className="header">
     <Image 
         src="/images/logo.png" 
         alt="logo" 
@@ -18,14 +20,16 @@ const Header = () => {
       
       <nav className="nav">
         <Link href="/" className={pathname === '/' ? 'active' : ''}>Home</Link>
-        <Link href="/services" className={pathname === '/services' ? 'active' : ''}>Our Services</Link>
-        <Link href="/project" className={pathname === '/project' ? 'active' : ''}>Our Projects</Link>
-        <Link href="/about" className={pathname === '/about' ? 'active' : ''}>About Us</Link>
-        <Link href="/contact" className={pathname === '/contact' ? 'active' : ''}>Contact Us</Link>
+        <Link href="/services" className={pathname === '/services' ? 'active' : ''}>Services</Link>
+        <Link href="/project" className={pathname === '/project' ? 'active' : ''}>Portfolio</Link>
+        <Link href="/about" className={pathname === '/about' ? 'active' : ''}>About</Link>
+        <Link href="/contact" className={pathname === '/contact' ? 'active' : ''}>Contact</Link>
       </nav>
 
-      <button className="btn">Get Started</button>
+      <button className="btn">Start Now</button>
     </header>
+    </div>
+    
   )
 }
 
