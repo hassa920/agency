@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import "../css/contact.css";
 import StartProjectContact from "../Component/StartProjectContact";

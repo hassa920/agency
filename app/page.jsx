@@ -3,8 +3,11 @@ import './home.css';
 import Link from 'next/link';
 import React, { useState, useEffect } from "react";
 import Image from 'next/image';
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+
+  const router = useRouter();
 
   const plans = [
     {
@@ -40,32 +43,32 @@ export default function Home() {
   ];
 
   const clients = [
-    { id: 1, name: 'Brand A', logo: 'https://media.gettyimages.com/id/1406088800/photo/business-colleagues-working-together-on-a-laptop.jpg?s=1024x1024&w=gi&k=20&c=xjcdJ9a28sQ8Nt1AzGLMKh2HQLnuU43uhiba3OhGlN8=' },
-    { id: 2, name: 'Brand B', logo: 'https://media.gettyimages.com/id/1406088800/photo/business-colleagues-working-together-on-a-laptop.jpg?s=1024x1024&w=gi&k=20&c=xjcdJ9a28sQ8Nt1AzGLMKh2HQLnuU43uhiba3OhGlN8=' },
-    { id: 3, name: 'Brand C', logo: 'https://media.gettyimages.com/id/1406088800/photo/business-colleagues-working-together-on-a-laptop.jpg?s=1024x1024&w=gi&k=20&c=xjcdJ9a28sQ8Nt1AzGLMKh2HQLnuU43uhiba3OhGlN8=' },
-    { id: 4, name: 'Brand D', logo: 'https://media.gettyimages.com/id/1406088800/photo/business-colleagues-working-together-on-a-laptop.jpg?s=1024x1024&w=gi&k=20&c=xjcdJ9a28sQ8Nt1AzGLMKh2HQLnuU43uhiba3OhGlN8=' },
+    { id: 1, name: 'Brand A', logo: 'https://media.gettyimages.com/id/1406088800/photo/business-colleagues-working-together-on-a-laptop.jpg' },
+    { id: 2, name: 'Brand B', logo: 'https://media.gettyimages.com/id/1406088800/photo/business-colleagues-working-together-on-a-laptop.jpg' },
+    { id: 3, name: 'Brand C', logo: 'https://media.gettyimages.com/id/1406088800/photo/business-colleagues-working-together-on-a-laptop.jpg' },
+    { id: 4, name: 'Brand D', logo: 'https://media.gettyimages.com/id/1406088800/photo/business-colleagues-working-together-on-a-laptop.jpg' },
   ];
 
-  const services = [
-    {
-      title: "Content Creation",
-      description: "We craft engaging visual and written content that captures attention and builds strong brand identity.",
-      isActive: false,
-      image: "https://via.placeholder.com/300x200/800080/FFFFFF?text=Creative+Content"
-    },
-    {
-      title: "Search Growth Strategy",
-      description: "Our SEO frameworks are built to increase visibility, attract quality traffic, and turn clicks into customers.",
-      isActive: true,
-      image: "https://via.placeholder.com/300x200/4B0082/FFFFFF?text=SEO+Growth"
-    },
-    {
-      title: "Modern Web Solutions",
-      description: "We design and develop scalable, high-performance websites tailored for business growth.",
-      isActive: false,
-      image: "https://via.placeholder.com/300x200/000033/FFFFFF?text=Web+Solutions"
-    }
-  ];
+const services = [
+  {
+    title: "Content Creation",
+    description: "...",
+    isActive: false,
+    image: "https://images.unsplash.com/photo-1492724441997-5dc865305da7"
+  },
+  {
+    title: "Search Growth Strategy",
+    description: "...",
+    isActive: true,
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f"
+  },
+  {
+    title: "Modern Web Solutions",
+    description: "...",
+    isActive: false,
+    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085"
+  }
+];
 
   const items = [
     "Built for growth",
@@ -91,14 +94,30 @@ export default function Home() {
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % images.length);
     }, 2500);
+
     return () => clearInterval(interval);
-  }, []);
+  }, [images.length]);
 
   const getClass = (i) => {
     if (i === index) return "card active";
     if (i === (index - 1 + images.length) % images.length) return "card left";
     if (i === (index + 1) % images.length) return "card right";
     return "card hidden";
+  };
+
+  // ✅ FUNCTIONS
+
+  const handleConsultation = () => {
+    router.push("/contact");
+  };
+
+  const handlePlanSelect = (plan) => {
+    console.log("Selected Plan:", plan);
+    router.push(`/checkout?plan=${plan.name}`);
+  };
+
+  const handleServiceClick = (service) => {
+    router.push(`/services#${service.title}`);
   };
 
   return (
@@ -117,9 +136,12 @@ export default function Home() {
             Into a Powerful Growth Engine<br />
             That Delivers Real Results.
           </h1>
-          <button className="services-btn">
-            <Link href="/services" className='btn-text'>Explore Services</Link>
-          </button>
+
+          <Link href="/services">
+            <button className="services-btn">
+              <span className='btn-text'>Explore Services</span>
+            </button>
+          </Link>
         </div>
       </section>
 
@@ -163,7 +185,7 @@ export default function Home() {
 
           <Image src="/images/logo.png" alt="Logo" width={160} height={60} />
 
-          <button className="cta-button">
+          <button className="cta-button" onClick={handleConsultation}>
             <span style={{ fontWeight: 'bold' }}>Start Free Consultation</span>
           </button>
         </div>
@@ -187,69 +209,23 @@ export default function Home() {
         </div>
       </div>
 
-      {/* ===== ABOUT ===== */}
-      <section className="about-section">
-        <div className="about-badge">
-          <span className="stars">✦</span>
-          <span>Who We Are</span>
-          <span className="stars">✦</span>
-        </div>
-        <div className="about-content">
-          <p style={{ fontSize: "30px", textAlign: "justify" }}>
-            DO my AIO
-            helps businesses leverage advanced digital tools and automation to simplify operations and boost growth.
-            We combine intelligent systems with proven marketing strategies to deliver consistent, measurable outcomes.
-
-            <span className="dimmed">
-              Our approach focuses on efficiency, scalability, and performance—ensuring your business stays ahead.
-            </span>
-
-            <span className="highlight-gradient"> Better results, less effort. </span>
-
-            <span className="dimmed">
-              Everything is integrated into one streamlined experience, so you can focus on what matters most—growing your business.
-            </span>
-
-            DO my AIO
-            <span className="dimmed"> is your long-term digital growth partner.</span>
-          </p>
-        </div>
-      </section>
-
       {/* ===== SERVICES ===== */}
       <section className="services-section">
         <h2 className="services-header">What We Do</h2>
         <div className="services-grid">
           {services.map((service, index) => (
-            <div key={index} className={`service-card ${service.isActive ? 'active' : ''}`}>
+            <div
+              key={index}
+              className={`service-card ${service.isActive ? 'active' : ''}`}
+              onClick={() => handleServiceClick(service)}
+            >
               <div className="card-top">
                 <h3 className="service-title">{service.title}</h3>
-                <div className="arrow-icon">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-                    <line x1="7" y1="17" x2="17" y2="7"></line>
-                    <polyline points="7 7 17 7 17 17"></polyline>
-                  </svg>
-                </div>
               </div>
               <p className="service-desc">{service.description}</p>
               <div className="shape-container" style={{ backgroundImage: `url(${service.image})` }}></div>
             </div>
           ))}
-        </div>
-      </section>
-
-      {/* ===== CLIENTS ===== */}
-      <section className="clients-section">
-        <div className="clients-container">
-          <h1 className="clients-title">Partners & Clients</h1>
-          <div className="clients-title-underline"></div>
-          <div className="clients-grid">
-            {clients.map((client) => (
-              <div key={client.id} className="client-card">
-                <img src={client.logo} alt={client.name} className="client-logo" />
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -262,21 +238,28 @@ export default function Home() {
               <div key={plan.name} className="pricing-card">
                 <div className="plan-badge">{plan.name}</div>
                 <h2 className="plan-name">{plan.name}</h2>
+
                 <div className="pricing-amount">
                   <span className="currency">$</span>
                   <span className="price">{plan.price}</span>
                   <span className="period">/month</span>
                 </div>
+
                 <ul className="features-list">
                   {plan.features.map((feature, index) => (
                     <li key={index} className="feature-item">
-                      <svg className="checkmark" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <polyline points="20 6 9 17 4 12"></polyline>
-                      </svg>
                       <span>{feature}</span>
                     </li>
                   ))}
                 </ul>
+
+                {/* <button
+                  className="cta-button"
+                  onClick={() => handlePlanSelect(plan)}
+                >
+                  Choose Plan
+                </button> */}
+
               </div>
             ))}
           </div>

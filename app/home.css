@@ -252,9 +252,11 @@ html, body {
   align-items: center;
   padding: 15px 15px 15px 20px;
   cursor: pointer;
+  justify-content: center;
   gap: 15px;
   width: fit-content;
   transition: transform 0.2s ease, background-color 0.3s ease;
+  margin-left: 35px;
 }
 
 .cta-button:active {

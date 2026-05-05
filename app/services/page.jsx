@@ -1,5 +1,7 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import "../css/service.css";
+import { useRouter } from "next/navigation";
 
 const serviceItems = [
   "Custom Website Design & Development",
@@ -44,26 +46,113 @@ const faqs = [
 ];
 
 const Service = () => {
+
+  const router = useRouter();
+
+  // ✅ FORM STATE
+  const [formData, setFormData] = useState({
+    name: "",
+    company: "",
+    phone: "",
+    email: "",
+    message: "",
+  });
+
+  const [loading, setLoading] = useState(false);
+
+  // ✅ HANDLE INPUT
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  // ✅ SUBMIT FORM (REAL FUNCTIONAL)
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    setLoading(true);
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        alert("Message sent successfully!");
+        setFormData({
+          name: "",
+          company: "",
+          phone: "",
+          email: "",
+          message: "",
+        });
+      } else {
+        alert("Failed to send message");
+      }
+
+    } catch (error) {
+      console.error(error);
+      alert("Something went wrong");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // ✅ BUTTON ACTIONS
+  const handleDiscover = () => {
+    router.push("/#pricing");
+  };
+
+  const handleExplore = () => {
+    router.push("/");
+  };
+
   return (
     <main className="services-page">
+
       <section className="services-hero">
         <div className="services-shell">
           <div className="services-hero-copy">
             <h1>Digital Growth Services</h1>
+
             <p>
               We provide end-to-end digital solutions that help businesses grow
               faster. From building powerful websites to executing smart marketing
               strategies, everything we do is focused on real results and long-term success.
             </p>
+
             <div className="services-hero-actions">
-              <button type="button" className="services-primary-btn">
+
+              <button
+                type="button"
+                className="services-primary-btn"
+                onClick={handleDiscover}
+              >
                 Discover More <span>→</span>
               </button>
-              <a href="#" className="services-crumb-btn">
+
+              <a
+                href="#"
+                className="services-crumb-btn"
+                onClick={(e) => {
+                  e.preventDefault();
+                  router.push("/");
+                }}
+              >
                 Home <span>&gt;</span> Services
               </a>
+
             </div>
           </div>
+
           <div className="services-hero-art" aria-hidden="true">
             <div className="services-main-orb"></div>
           </div>
@@ -73,6 +162,7 @@ const Service = () => {
       <section className="services-offer">
         <div className="services-shell">
           <h2>Solutions We Provide</h2>
+
           <div className="services-offer-grid">
             <article className="services-offer-card">
               <img
@@ -80,11 +170,13 @@ const Service = () => {
                 alt="Digital services overview"
               />
             </article>
+
             <ul className="services-offer-list">
               {serviceItems.map((item) => (
                 <li key={item}>{item}</li>
               ))}
             </ul>
+
           </div>
         </div>
       </section>
@@ -92,6 +184,7 @@ const Service = () => {
       <section className="services-clients">
         <div className="services-shell">
           <h2>Brands We Work With</h2>
+
           <div className="services-client-strip">
             {clients.map((client) => (
               <div key={client} className="services-client-logo">
@@ -99,39 +192,52 @@ const Service = () => {
               </div>
             ))}
           </div>
+
         </div>
       </section>
 
       <section className="services-highlight">
         <div className="services-shell">
           <article className="services-highlight-card">
+
             <div className="services-highlight-top">
               <div>
                 <h2>Smart Strategies Backed by Real Experience</h2>
+
                 <p>
                   We blend creativity with data-driven insights to build digital
                   experiences that attract, engage, and convert your audience.
                 </p>
-                <button type="button" className="services-primary-btn">
+
+                <button
+                  type="button"
+                  className="services-primary-btn"
+                  onClick={handleExplore}
+                >
                   Explore More <span>→</span>
                 </button>
+
               </div>
+
               <img
                 src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80"
                 alt="Digital team collaboration"
               />
             </div>
+
             <div className="services-highlight-bottom">
               <img
                 src="https://images.unsplash.com/photo-1549692520-acc6669e2f0c?auto=format&fit=crop&w=500&q=80"
                 alt="Creative professional"
               />
+
               <div>
                 <h3>Creative Approach</h3>
                 <p>
                   We design solutions that are not only functional but also visually impactful.
                 </p>
               </div>
+
               <div>
                 <h3>Why Work With Us</h3>
                 <p>
@@ -139,6 +245,7 @@ const Service = () => {
                 </p>
               </div>
             </div>
+
           </article>
         </div>
       </section>
@@ -146,6 +253,7 @@ const Service = () => {
       <section className="services-faq">
         <div className="services-shell">
           <h2>Common Questions</h2>
+
           <div className="services-faq-list">
             {faqs.map((faq, idx) => (
               <details key={faq.id} open={idx === 0}>
@@ -154,52 +262,68 @@ const Service = () => {
               </details>
             ))}
           </div>
+
         </div>
       </section>
 
       <section className="services-contact">
         <div className="services-shell services-contact-grid">
+
           <div className="services-contact-left">
             <div className="services-hand">🤝</div>
             <h2>Let’s build something great together</h2>
+
             <p>
               Share your ideas with us and we’ll help turn them into a powerful digital experience.
             </p>
+
             <div className="services-socials">
-              <a href="#" aria-label="Facebook">f</a>
-              <a href="#" aria-label="LinkedIn">in</a>
-              <a href="#" aria-label="Instagram">ig</a>
+              <a href="#">f</a>
+              <a href="#">in</a>
+              <a href="#">ig</a>
             </div>
           </div>
-          <form className="services-contact-form">
+
+          <form className="services-contact-form" onSubmit={handleSubmit}>
+
             <div className="services-form-grid">
+
               <label>
                 Your name*
-                <input type="text" name="name" required />
+                <input type="text" name="name" value={formData.name} onChange={handleChange} required />
               </label>
+
               <label>
                 Company name
-                <input type="text" name="company" />
+                <input type="text" name="company" value={formData.company} onChange={handleChange} />
               </label>
+
               <label>
                 Phone number*
-                <input type="tel" name="phone" required />
+                <input type="tel" name="phone" value={formData.phone} onChange={handleChange} required />
               </label>
+
               <label>
                 Email address*
-                <input type="email" name="email" required />
+                <input type="email" name="email" value={formData.email} onChange={handleChange} required />
               </label>
+
             </div>
+
             <label className="services-form-message">
               Tell us about your project*
-              <textarea rows={4} name="message" required></textarea>
+              <textarea rows={4} name="message" value={formData.message} onChange={handleChange} required></textarea>
             </label>
-            <button type="submit" className="services-send-btn">
-              Submit
+
+            <button type="submit" className="services-send-btn" disabled={loading}>
+              {loading ? "Sending..." : "Submit"}
             </button>
+
           </form>
+
         </div>
       </section>
+
     </main>
   );
 };

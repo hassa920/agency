@@ -1,4 +1,5 @@
-import React from "react";
+"use client"
+import React, { useState } from "react";
 
 const socialLinks = [
   { id: "fb", label: "Facebook", icon: "f", href: "#" },
@@ -7,6 +8,47 @@ const socialLinks = [
 ];
 
 const StartProjectContact = () => {
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    const formData = new FormData(e.target);
+
+    const data = {
+      name: formData.get("name"),
+      company: formData.get("company"),
+      phone: formData.get("phone"),
+      email: formData.get("email"),
+      message: formData.get("message"),
+    };
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await res.json();
+
+      if (result.success) {
+        alert("Message sent successfully!");
+        e.target.reset(); // keeps UI same, just clears form
+      } else {
+        alert("Failed to send message");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Something went wrong");
+    }
+
+    setLoading(false);
+  };
+
   return (
     <section className="start-project-section" id="contact">
       <div className="start-project-container">
@@ -22,14 +64,19 @@ const StartProjectContact = () => {
 
           <div className="start-project-socials" aria-label="Social links">
             {socialLinks.map((social) => (
-              <a key={social.id} href={social.href} aria-label={social.label} className="start-project-social-btn">
+              <a
+                key={social.id}
+                href={social.href}
+                aria-label={social.label}
+                className="start-project-social-btn"
+              >
                 {social.icon}
               </a>
             ))}
           </div>
         </div>
 
-        <form className="start-project-form">
+        <form className="start-project-form" onSubmit={handleSubmit}>
           <div className="start-project-field-grid">
             <label className="start-project-field">
               <span>Your name*</span>
@@ -57,9 +104,13 @@ const StartProjectContact = () => {
             <textarea name="message" rows={4} required />
           </label>
 
-          <button type="submit" className="start-project-submit-btn">
+          <button
+            type="submit"
+            className="start-project-submit-btn"
+            disabled={loading}
+          >
             <span className="start-project-submit-icon">→</span>
-            Submit
+            {loading ? "Submitting..." : "Submit"}
           </button>
         </form>
       </div>
