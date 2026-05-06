@@ -483,3 +483,8 @@
     border-bottom: none;
   }
 }
+.ventures-icon-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  pointer-events: none;
+}

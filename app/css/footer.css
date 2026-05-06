@@ -343,3 +343,40 @@
     font-size: 11px;
   }
 }
+
+/* ── Add these to your existing footer.css ── */
+
+.footer-newsletter-success {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #ecfdf5;
+  border: 1px solid #6ee7b7;
+  border-radius: 8px;
+  padding: 14px 16px;
+  color: #065f46;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.footer-newsletter-success p {
+  margin: 0;
+}
+
+.footer-form-error {
+  font-size: 0.82rem;
+  color: #dc2626;
+  margin: 0 0 8px 0;
+}
+
+.footer-form-duplicate {
+  font-size: 0.82rem;
+  color: #b45309;
+  margin: 0 0 8px 0;
+}
+
+.footer-subscribe-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}

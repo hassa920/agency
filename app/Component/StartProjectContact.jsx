@@ -1,5 +1,6 @@
 "use client"
 import React, { useState } from "react";
+import '../css/startprojectcontact.css'
 
 const socialLinks = [
   { id: "fb", label: "Facebook", icon: "f", href: "#" },
