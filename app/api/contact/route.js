@@ -2,9 +2,10 @@
 
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
-import { getDb } from "../../lib/db";
+import { getDb } from "../../../lib/db";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
+export const dynamic = "force-dynamic"; // ← prevents build-time execution
 
 export async function POST(req) {
   try {
