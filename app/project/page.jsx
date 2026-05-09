@@ -21,7 +21,6 @@ const Page = () => {
             and how we can do the same for you.
           </p>
 
-          <GetStartedButton />
         </div>
       </section>
 

@@ -49,26 +49,26 @@ export default function Home() {
     { id: 4, name: 'Brand D', logo: 'https://media.gettyimages.com/id/1406088800/photo/business-colleagues-working-together-on-a-laptop.jpg' },
   ];
 
-const services = [
-  {
-    title: "Content Creation",
-    description: "...",
-    isActive: false,
-    image: "https://images.unsplash.com/photo-1492724441997-5dc865305da7"
-  },
-  {
-    title: "Search Growth Strategy",
-    description: "...",
-    isActive: true,
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f"
-  },
-  {
-    title: "Modern Web Solutions",
-    description: "...",
-    isActive: false,
-    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085"
-  }
-];
+  const services = [
+    {
+      title: "Content Creation",
+      description: "...",
+      isActive: false,
+      image: "https://images.unsplash.com/photo-1492724441997-5dc865305da7"
+    },
+    {
+      title: "Search Growth Strategy",
+      description: "...",
+      isActive: true,
+      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f"
+    },
+    {
+      title: "Modern Web Solutions",
+      description: "...",
+      isActive: false,
+      image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085"
+    }
+  ];
 
   const items = [
     "Built for growth",
@@ -162,7 +162,8 @@ const services = [
 
         <div className="middle-row">
           <div className="gradient-title">
-            <Image src="/images/logo.png" alt="Logo" width={180} height={70} />
+            <Image src="/images/logo.png" alt="Logo" width={200}
+              height={100} />
           </div>
           <p className="description">
             Our results are driven by real strategies, real data, and consistent execution
@@ -183,7 +184,7 @@ const services = [
             </div>
           </div>
 
-          <Image src="/images/logo.png" alt="Logo" width={160} height={60} />
+          <Image src="/Images/logo.png" alt="Logo" width={100} height={70} />
 
           <button className="cta-button" onClick={handleConsultation}>
             <span style={{ fontWeight: 'bold' }}>Start Free Consultation</span>

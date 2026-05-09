@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import "../css/contact.css";
 import StartProjectContact from "../Component/StartProjectContact";
-
+import Link from "next/link";
 const contactHighlights = [
   {
     id: "location",
@@ -107,12 +107,22 @@ const Contact = () => {
               available contact options and we will respond as quickly as possible.
             </p>
             <div className="contact-hero-actions">
-              <button type="button" className="contact-call-btn">
+              <button
+                type="button"
+                className="contact-call-btn"
+                onClick={() => {
+                  document.getElementById("contact-form")?.scrollIntoView({
+                    behavior: "smooth",
+                  });
+                }}
+              >
                 Contact Now <span>→</span>
               </button>
-              <a href="#" className="contact-crumb-btn">
-                Home <span>&gt;</span> Contact
-              </a>
+         <Link href="/" className="contact-crumb-btn">
+  Home
+</Link>
+<span style={{ margin: "0 6px" }}>&gt;</span>
+<span className="contact-crumb-btn">Contact</span>
             </div>
           </div>
 
@@ -167,7 +177,7 @@ const Contact = () => {
               </button>
             </div>
           ) : (
-            <form className="contact-details-form" onSubmit={handleSubmit}>
+            <form id="contact-form"  className="contact-details-form" onSubmit={handleSubmit}>
               <h3>Start a Conversation</h3>
 
               <div className="contact-details-grid">

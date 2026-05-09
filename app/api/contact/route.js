@@ -5,14 +5,15 @@ import { Resend } from "resend";
 import { getDb } from "../../../lib/db";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
-export const dynamic = "force-dynamic"; // ← prevents build-time execution
+
+export const dynamic = "force-dynamic";
 
 export async function POST(req) {
   try {
     const body = await req.json();
     const { name, company, phone, email, message, projectDetails } = body;
 
-    // ── Validation ───────────────────────────
+    // ✅ Validation
     if (!name || !email || (!message && !projectDetails)) {
       return NextResponse.json(
         { success: false, message: "Name, email, and message are required." },
@@ -20,10 +21,9 @@ export async function POST(req) {
       );
     }
 
-    // Normalize: popup sends `projectDetails`, contact form sends `message`
     const finalMessage = message || projectDetails || "";
 
-    // ── Save to MongoDB (agency → contacts) ──
+    // ✅ Save to MongoDB
     const db = await getDb();
     await db.collection("contacts").insertOne({
       name,
@@ -34,10 +34,10 @@ export async function POST(req) {
       createdAt: new Date(),
     });
 
-    // ── Send email to YOU ────────────────────
+    // ✅ Send email to YOU
     await resend.emails.send({
-      from: "Your App <onboarding@resend.dev>",
-      to: "your_email@gmail.com", // 🔁 change this
+      from: "Your App <noreply@yourdomain.com>", // ✅ updated
+      to: "hassamtariq399@gmail.com",
       subject: "New Contact Form Submission",
       html: `
         <h2>New Contact Form Message</h2>
@@ -49,9 +49,9 @@ export async function POST(req) {
       `,
     });
 
-    // ── Auto-reply to USER ───────────────────
+    // ✅ Auto-reply to USER (WORKS FOR ANY EMAIL NOW)
     await resend.emails.send({
-      from: "Your App <onboarding@resend.dev>",
+      from: "Your App <noreply@yourdomain.com>", // ✅ updated
       to: email,
       subject: "We received your message",
       html: `

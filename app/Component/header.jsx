@@ -16,8 +16,9 @@ const Header = () => {
         <Image
           src="/images/logo.png"
           alt="logo"
-          width={120}
-          height={50}
+          className='logo'
+          width={200}
+          height={40}
         />
 
         <nav className="nav">

@@ -65,8 +65,10 @@ export default function Footer() {
               <Image
                 src="/images/logo.png"
                 alt="logo"
-                width={140}
-                height={55}
+                
+                width={100}
+                height={40}
+               
               />
             </div>
             <p className="footer-tagline">
@@ -84,7 +86,7 @@ export default function Footer() {
           </div>
 
           {/* Services Section */}
-          <div className="footer-column">
+          {/* <div className="footer-column">
             <h3 className="footer-column-title">Services:</h3>
             <ul className="footer-link-list">
               <li><a href="#aio-service" className="footer-link">Digital Growth Solutions</a></li>
@@ -93,7 +95,7 @@ export default function Footer() {
               <li><a href="#graphic-design" className="footer-link">Brand & Design</a></li>
               <li><a href="#video-editing" className="footer-link">Content Production</a></li>
             </ul>
-          </div>
+          </div> */}
 
           {/* Newsletter Section */}
           <div className="footer-newsletter">
