@@ -3,9 +3,9 @@ import React, { useState } from "react";
 import '../css/startprojectcontact.css'
 
 const socialLinks = [
-  { id: "fb", label: "Facebook", icon: "f", href: "#" },
-  { id: "ln", label: "LinkedIn", icon: "in", href: "#" },
-  { id: "ig", label: "Instagram", icon: "ig", href: "#" },
+  { id: "fb", label: "Facebook", icon: "f", href: "https://www.facebook.com" },
+  { id: "ln", label: "LinkedIn", icon: "in", href: "https://www.linkedin.com" },
+  { id: "ig", label: "Instagram", icon: "ig", href: "https://www.instagram.com" },
 ];
 
 const StartProjectContact = () => {
