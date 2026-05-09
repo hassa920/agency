@@ -38,7 +38,7 @@ body {
   margin: 0;
   background: var(--color-bg);
   color: var(--color-text);
-  font-family: 'Forma DJR Text', 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: var(--font-forma);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
