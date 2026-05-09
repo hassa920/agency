@@ -908,20 +908,59 @@ html, body {
 }
 
 @media (max-width: 992px) {
-  .hero-container { padding: 60px 20px; height: auto; min-height: 100vh; }
+  .hero-container { padding: 30px 20px; height: auto; min-height: 100vh; }
   .main-title     { font-size: 50px; line-height: 1.1; }
 }
+/* LARGE SCREENS */
+@media (min-width: 769px) {
 
+  .hero-orbit-sticky{
+    gap: 12px;
+  }
+
+  .hero-container{
+    margin-bottom: 0;
+    padding-bottom: 70;
+    min-height: 78vh;
+    
+  }
+
+  .hp-orbit-section{
+    margin-top: 0px;
+    padding-top: 0;
+  }
+}
 @media (max-width: 768px) {
-  .clients-section        { padding: 46px 14px; }
-  .clients-title          { font-size: 32px; }
-  .clients-grid           { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-  .client-card            { padding: 22px 10px; min-height: 140px; }
-  .client-logo            { max-width: 110px; }
-  .pricing-container      { padding: 38px 16px; }
-  .pricing-title          { font-size: 32px; margin-bottom: 36px; }
-  .pricing-cards-wrapper  { grid-template-columns: 1fr; gap: 22px; }
-  .price                  { font-size: 42px; }
+
+  .hero-orbit-sticky{
+    gap: 0;
+    padding-top: 0;
+  }
+
+  .hero-container{
+    min-height: auto;
+    padding-bottom: 0;
+    margin-bottom: -20px;
+  }
+
+  .content-box{
+    gap: 10px;
+  }
+
+  .main-title{
+    margin-bottom: 12px;
+  }
+
+  .hp-orbit-section{
+    margin-top: 90px;
+    padding-top: 0;
+    padding-bottom: 50px;
+  }
+
+  .hp-circle-wrapper{
+    width: 240px;
+    height: 240px;
+  }
 }
 
 @media (max-width: 600px) {
