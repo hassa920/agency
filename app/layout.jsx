@@ -6,7 +6,7 @@ import Footer from './Component/footer'
 import './globals.css'
 const formaDJR =localFont({
   src:[{
-    path:"./assets/fonts/FormaDJRText-Medium-Testing.otf"
+    path:"./assets/fonts/FormaDJRText-Regular-Testing.otf"
   }],
   variable:"--font-forma",
   display:"swap"

@@ -22,15 +22,15 @@ const TopBar = () => {
 
           <span className="divider">|</span>
 
-          <Link href="#" aria-label="Facebook">
+          <Link href="https://www.facebook.com" aria-label="Facebook">
             <FaFacebook size={16} />
           </Link>
 
-          <Link href="#" aria-label="LinkedIn">
+          <Link href="https://www.linkedin.com" aria-label="LinkedIn">
             <FaLinkedin size={16} />
           </Link>
 
-          <Link href="#" aria-label="Instagram">
+          <Link href="https://www.instagram.com" aria-label="Instagram">
             <FaInstagram size={16} />
           </Link>
         </div>
