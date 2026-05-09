@@ -6,24 +6,24 @@
    gradient:       #4252DC → #CB3785 → #80246D
 ────────────────────────────────────────────────── */
 :root {
-  --color-bg:             #06060A;
-  --color-bg-card:        #0D0D18;
-  --color-primary:        #CB3785;
-  --color-primary-dark:   #80246D;
-  --color-secondary:      #4252DC;
-  --color-primary-tint:   rgba(203, 55, 133, 0.07);
-  --color-text:           #F0F0F8;
-  --color-text-muted:     rgba(240, 240, 248, 0.52);
-  --gradient-brand:       linear-gradient(135deg, #4252DC 0%, #CB3785 52%, #80246D 100%);
-  --border-pink:          rgba(203, 55, 133, 0.22);
-  --border-blue:          rgba(66, 82, 220, 0.22);
-  --glow-pink:            0 0 40px rgba(203, 55, 133, 0.28);
-  --glow-blue:            0 0 40px rgba(66,  82, 220, 0.22);
-  --radius-card:          14px;
-  --radius-pill:          999px;
+  --color-bg:           #06060A;
+  --color-bg-card:      #0D0D18;
+  --color-primary:      #CB3785;
+  --color-primary-dark: #80246D;
+  --color-secondary:    #4252DC;
+  --color-primary-tint: rgba(203, 55, 133, 0.07);
+  --color-text:         #F0F0F8;
+  --color-text-muted:   rgba(240, 240, 248, 0.52);
+  --gradient-brand:     linear-gradient(135deg, #4252DC 0%, #CB3785 52%, #80246D 100%);
+  --border-pink:        rgba(203, 55, 133, 0.22);
+  --border-blue:        rgba(66, 82, 220, 0.22);
+  --glow-pink:          0 0 40px rgba(203, 55, 133, 0.28);
+  --glow-blue:          0 0 40px rgba(66, 82, 220, 0.22);
+  --radius-card:        14px;
+  --radius-pill:        999px;
 }
 
-/* ── Reset ───────────────────────────────────────── */
+/* ── Reset ── */
 *,
 *::before,
 *::after {
@@ -32,19 +32,38 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
   margin: 0;
-  background: var(--color-bg);
+  padding: 0;
+  overflow-x: hidden;
   color: var(--color-text);
-  font-family: var(--font-forma);
+  font-family: 'Forma DJR Text', 'Inter', 'Helvetica Neue', Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
+
+  /* Left-side purple/magenta radial glow — applied globally to every page */
+  background-color: var(--color-bg);
+  background-image:
+    radial-gradient(
+      ellipse 52% 70% at -4% 38%,
+      rgba(128, 36, 109, 0.60) 0%,
+      rgba(90,  15, 70,  0.30) 42%,
+      transparent 68%
+    ),
+    radial-gradient(
+      ellipse 28% 38% at 0% 52%,
+      rgba(203, 55, 133, 0.22) 0%,
+      transparent 62%
+    );
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100vh;
 }
 
-/* ── Gradient text utility ───────────────────────── */
+/* ── Gradient text utility ── */
 .gradient-text {
   background: var(--gradient-brand);
   -webkit-background-clip: text;
@@ -52,85 +71,81 @@ body {
   background-clip: text;
 }
 
-/* ──────────────────────────────────────────────────
-   ORBITAL CIRCLE  (home hero decorative element)
-────────────────────────────────────────────────── */
-.circle-wrapper {
+/* ── Remove default link underlines ── */
+a {
+  text-decoration: none;
+}
+
+/* ══════════════════════════════════════════════════
+   GLOBAL HEADER — applies to every page
+   ══════════════════════════════════════════════════ */
+.hp-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 40px;
   position: relative;
-  width: 500px;
-  height: 500px;
-  margin: 80px auto;
+  z-index: 10;
+  border-bottom: 1px solid rgba(203, 55, 133, 0.10);
 }
 
-@media (max-width: 600px) {
-  .circle-wrapper { width: 300px; height: 300px; margin: 50px auto; }
-}
-
-.circle {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  border: 1.5px solid #CB3785;
-  position: relative;
-  box-shadow:
-    0 0 60px rgba(203, 55, 133, 0.18),
-    inset 0 0 60px rgba(203, 55, 133, 0.06);
-}
-
-.orbit-dot {
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  background: #ffffff;
-  position: absolute;
-  box-shadow: 0 0 18px rgba(255, 255, 255, 0.70);
-}
-
-.dot-1 { top: 20%; left: 8%; }
-.dot-2 { top: 0%;  right: 25%; }
-.dot-3 { bottom: 15%; left: 0%; }
-
-@media (max-width: 600px) {
-  .orbit-dot { width: 14px; height: 14px; }
-}
-
-.center-logo {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 80px;
+.hp-nav-logo {
+  font-size: 22px;
   font-weight: 800;
   background: var(--gradient-brand);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  white-space: nowrap;
+  letter-spacing: -0.5px;
+  text-decoration: none;
+}
+
+.hp-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.hp-nav-links a {
+  color: var(--color-text);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  opacity: 0.75;
+  transition: opacity 0.2s;
+}
+
+.hp-nav-links a:hover  { opacity: 1; }
+.hp-nav-links a.active { opacity: 1; font-weight: 600; }
+
+.hp-nav-cta {
+  background: transparent;
+  border: 1.5px solid rgba(203, 55, 133, 0.55);
+  border-radius: var(--radius-pill);
+  color: var(--color-text);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 24px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.hp-nav-cta:hover {
+  background: rgba(203, 55, 133, 0.12);
+  border-color: var(--color-primary);
+}
+
+/* ── Header responsive ── */
+@media (max-width: 768px) {
+  .hp-header    { padding: 14px 20px; }
+  .hp-nav-links { gap: 16px; }
+  .hp-nav-links a { font-size: 13px; }
+  .hp-nav-cta   { padding: 8px 16px; font-size: 13px; }
 }
 
 @media (max-width: 600px) {
-  .center-logo { font-size: 44px; }
-}
-
-/* ── Scroll section ──────────────────────────────── */
-.scroll-text {
-  text-align: center;
-  margin-top: 80px;
-  font-size: clamp(28px, 5vw, 52px);
-  font-weight: 700;
-  letter-spacing: 14px;
-  text-transform: uppercase;
-  color: var(--color-text);
-}
-
-.scroll-text .pink {
-  color: var(--color-primary);
-}
-
-.arrow {
-  text-align: center;
-  font-size: clamp(60px, 10vw, 110px);
-  color: var(--color-primary);
-  margin-top: 16px;
-  line-height: 1;
+  .hp-nav-links { display: none; }
 }

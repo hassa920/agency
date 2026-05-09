@@ -1,7 +1,7 @@
-.about-page {
+/* .about-page {
   background: var(--color-bg);
   color: var(--color-text);
-}
+} */
 
 .about-shell {
   width: min(1140px, 100%);
