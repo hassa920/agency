@@ -1,5 +1,9 @@
 /* ──────────────────────────────────────────────────
-   DESIGN TOKENS
+   DESIGN TOKENS  (dark brand from UI spec)
+   primary:        #CB3785  (vibrant pink)
+   primary-dark:   #80246D  (deep magenta)
+   secondary:      #4252DC  (electric blue)
+   gradient:       #4252DC → #CB3785 → #80246D
 ────────────────────────────────────────────────── */
 :root {
   --color-bg:           #06060A;
@@ -18,8 +22,8 @@
   --radius-card:        14px;
   --radius-pill:        999px;
 
-  /* Desktop: 44 (topbar) + 16 (pad-top) + 78 (header) + 16 (pad-bottom) = 154px */
-  --header-offset: 154px;
+  /* ── Header offset — fixed header ki height ka hisaab ── */
+  --header-offset: 154px; /* 44 (topbar) + 16 (padding-top) + 78 (header) + 16 (padding-bottom) */
 }
 
 /* ── Reset ── */
@@ -38,7 +42,7 @@ html {
 body {
   margin: 0;
   padding: 0;
-  padding-top: var(--header-offset); /* ✅ har page + har screen size pe auto offset */
+  padding-top: var(--header-offset); /* ✅ FIX: har page pe auto offset */
   overflow-x: hidden;
   width: 100%;
   color: var(--color-text);
@@ -49,7 +53,7 @@ body {
   min-height: 100vh;
 }
 
-/* ── Fixed background glow ── */
+/* ── Fixed background glow — har browser mein kaam karta hai ── */
 body::before {
   content: '';
   position: fixed;
@@ -87,13 +91,13 @@ a {
   text-decoration: none;
 }
 
-/* ── page-root: backward compat — body offset ab global hai ── */
+/* ── page-root: purane pages ke liye backward compat (ab zarurat nahi) ── */
 .page-root {
   padding-top: 0;
 }
 
 /* ══════════════════════════════════════════════════
-   GLOBAL HEADER
+   GLOBAL HEADER — applies to every page
    ══════════════════════════════════════════════════ */
 .hp-header {
   display: flex;
@@ -166,17 +170,9 @@ h1, h2 {
   border-color: var(--color-primary);
 }
 
-/* ══════════════════════════════════════════════════
-   RESPONSIVE — header offset recalculation
-   
-   Formula: topbar + pad-top + header-height + pad-bottom
-   Mobile pe header flex-wrap hota hai isliye height
-   badh jaati hai — offset bhi accordingly barhaya hai
-   ══════════════════════════════════════════════════ */
-
+/* ── Header responsive ── */
 @media (max-width: 768px) {
-  /* 80 (topbar 2 rows) + 12 + 90 (wrapped header) + 12 = 194px */
-  :root { --header-offset: 194px; }
+  :root { --header-offset: 196px; }
 
   .hp-header    { padding: 14px 20px; }
   .hp-nav-links { gap: 16px; }
@@ -185,18 +181,15 @@ h1, h2 {
 }
 
 @media (max-width: 600px) {
-  /* 80 (topbar) + 12 + 70 (nav hidden, logo+btn only) + 12 = 174px */
-  :root { --header-offset: 174px; }
+  :root { --header-offset: 180px; }
 
   .hp-nav-links { display: none; }
 }
 
 @media (max-width: 480px) {
-  /* 74 (topbar) + 10 + 64 (compact header) + 10 = 158px */
-  :root { --header-offset: 158px; }
+  :root { --header-offset: 160px; }
 }
 
 @media (max-width: 360px) {
-  /* 68 (topbar) + 10 + 60 (smallest header) + 10 = 148px */
   :root { --header-offset: 148px; }
 }
