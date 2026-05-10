@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import '../css/header.css'
 import { usePathname } from 'next/navigation'
@@ -9,9 +9,29 @@ import ProjectPopup from './ProjectPopup'
 const Header = () => {
   const pathname = usePathname()
   const [isPopupOpen, setIsPopupOpen] = useState(false)
+  const wrapperRef = useRef(null)
+
+  useEffect(() => {
+    const updateOffset = () => {
+      if (!wrapperRef.current) return
+      // wrapper ka actual bottom position + 20px breathing room
+      const rect = wrapperRef.current.getBoundingClientRect()
+      const offset = rect.bottom + 20
+      document.documentElement.style.setProperty('--header-offset', `${offset}px`)
+    }
+
+    // pehli baar run karo
+    updateOffset()
+
+    // har resize pe update (mobile rotate bhi cover hoga)
+    const observer = new ResizeObserver(updateOffset)
+    if (wrapperRef.current) observer.observe(wrapperRef.current)
+
+    return () => observer.disconnect()
+  }, [])
 
   return (
-    <div className='header-wrapper'>
+    <div className='header-wrapper' ref={wrapperRef}>
       <header className="header">
         <Image
           src="/images/logo.png"
@@ -29,13 +49,11 @@ const Header = () => {
           <Link href="/contact" className={pathname === '/contact' ? 'active' : ''}>Contact</Link>
         </nav>
 
-        {/* Opens popup on click */}
         <button className="btn" onClick={() => setIsPopupOpen(true)}>
           Start Now
         </button>
       </header>
 
-      {/* Popup rendered at root level, controlled by state */}
       <ProjectPopup
         isOpen={isPopupOpen}
         onClose={() => setIsPopupOpen(false)}

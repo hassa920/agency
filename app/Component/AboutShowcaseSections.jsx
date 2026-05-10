@@ -60,7 +60,6 @@ const AboutHero = () => {
     <section className="about-hero">
       <div className="about-shell about-hero-grid">
         <div className="about-hero-copy">
-          <p className="about-tag">Modern Digital Agency</p>
           <h1>Helping Businesses Grow Through Smart Digital Solutions</h1>
           <p>
             We combine strategy, creativity, and modern technology to build

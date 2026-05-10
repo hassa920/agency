@@ -1,7 +1,11 @@
 /* ── Wrapper ─────────────────────────────────────── */
 .topbar-wrapper {
-  background: var(--color-bg);
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
+  z-index: 1001;
+  background: var(--color-bg);
   border-bottom: 1px solid rgba(203, 55, 133, 0.12);
 }
 
@@ -46,9 +50,7 @@
   transition: color 0.2s ease;
 }
 
-.topbar a:hover {
-  color: #ffffff;
-}
+.topbar a:hover { color: #ffffff; }
 
 /* ── Responsive ──────────────────────────────────── */
 @media (min-width: 1280px) {
@@ -62,14 +64,12 @@
 
 @media (max-width: 768px) {
   .divider { display: none; }
-
   .topbar {
     flex-direction: column;
     gap: 6px;
     padding: 10px 16px;
     text-align: center;
   }
-
   .topbar-left,
   .topbar-right {
     width: 100%;
