@@ -5,8 +5,7 @@
   left: 0;
   width: 100%;
   z-index: 1001;
-  background: var(--color-bg);
-  border-bottom: 1px solid rgba(203, 55, 133, 0.12);
+ backdrop-filter: blur(20px);
 }
 
 /* ── Topbar ──────────────────────────────────────── */

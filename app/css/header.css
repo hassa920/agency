@@ -3,12 +3,12 @@
    ========================================================================== */
 
 :root {
-  --header-offset: 174px; /* JS load hone se pehle ka fallback only */
+  --header-offset: 174px;
 }
 
 
 /* ==========================================================================
-   BODY OFFSET (fixed header ka space)
+   BODY OFFSET
    ========================================================================== */
 
 body {
@@ -23,10 +23,18 @@ body {
 .header-wrapper {
   position: fixed;
   top: 44px;
-  left: 0;
+
+  left: 50%;
+  transform: translateX(-50%);
+
   width: 100%;
+  max-width: 760px;
+
+  backdrop-filter: blur(20px);
   padding: 16px 24px;
   z-index: 1000;
+
+  box-sizing: border-box;
 }
 
 
@@ -36,25 +44,35 @@ body {
 
 .header {
   width: 100%;
-  max-width: 1180px;
   height: 78px;
-  margin: auto;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 26px;
+
+  gap: 18px;
+
+  padding: 0 18px;
+
+  box-sizing: border-box;
+  overflow: hidden;
+
   border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, 0.14);
+
   background: linear-gradient(
     180deg,
     rgba(255, 255, 255, 0.06),
     rgba(255, 255, 255, 0.03)
   );
+
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
+
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.08),
     0 12px 34px rgba(0, 0, 0, 0.45);
+
   position: relative;
 }
 
@@ -69,11 +87,14 @@ body {
     rgba(255, 255, 255, 0.20),
     rgba(255, 255, 255, 0.04)
   );
+
   -webkit-mask:
     linear-gradient(#fff 0 0) content-box,
     linear-gradient(#fff 0 0);
+
   -webkit-mask-composite: xor;
   mask-composite: exclude;
+
   pointer-events: none;
 }
 
@@ -83,31 +104,52 @@ body {
    ========================================================================== */
 
 .logo {
-  width: 150px;
+  width: 118px;
+
   object-fit: contain;
+
+  flex-shrink: 0;
+
+  max-width: 100%;
 }
 
 
 /* ==========================================================================
-   NAVIGATION
+   DESKTOP NAV
    ========================================================================== */
 
 .nav {
   display: flex;
   align-items: center;
-  gap: 42px;
+  justify-content: center;
+
+  gap: 26px;
+
+  flex: 1;
+
+  min-width: 0;
 }
 
 .nav a {
   color: rgba(255, 255, 255, 0.72);
+
   text-decoration: none;
-  font-size: 16px;
+
+  font-size: 15px;
   font-weight: 500;
+
   transition: 0.25s ease;
+
   position: relative;
+
+  white-space: nowrap;
+
+  flex-shrink: 0;
 }
 
-.nav a:hover { color: #fff; }
+.nav a:hover {
+  color: #fff;
+}
 
 .nav .active {
   color: #fff;
@@ -116,76 +158,495 @@ body {
 
 .nav .active::after {
   content: '';
+
   position: absolute;
+
   left: 0;
   bottom: -8px;
+
   width: 100%;
   height: 2px;
+
   background: var(--gradient-brand);
+
   border-radius: 999px;
 }
 
 
 /* ==========================================================================
-   BUTTON
+   DESKTOP BUTTON
    ========================================================================== */
 
 .btn {
   border: none;
-  padding: 12px 24px;
+
+  flex-shrink: 0;
+
+  padding: 0 18px;
+
+  min-width: 116px;
+  height: 42px;
+
   border-radius: 999px;
+
   background: linear-gradient(
     180deg,
     rgba(255, 255, 255, 0.12),
     rgba(255, 255, 255, 0.04)
   );
-  border: 1px solid rgba(255, 255, 255, 0.18);
+
+  border: 1px solid rgba(255, 255, 255, 0.22);
+
   color: #fff;
-  font-size: 15px;
-  font-weight: 700;
+
+  font-size: 14px;
+  font-weight: 600;
+
   cursor: pointer;
+
   transition: 0.28s ease;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  white-space: nowrap;
+
+  max-width: 100%;
 }
 
 .btn:hover {
   transform: translateY(-2px);
+
   background: var(--gradient-brand);
-  box-shadow: 0 12px 34px rgba(203, 55, 133, 0.32);
+
+  box-shadow:
+    0 12px 34px rgba(203, 55, 133, 0.32);
 }
 
 
 /* ==========================================================================
-   RESPONSIVE — layout only, offset JS handle karta hai
+   HAMBURGER BUTTON
+   ========================================================================== */
+
+.hamburger {
+  display: none;
+
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  gap: 5px;
+
+  width: 42px;
+  height: 42px;
+
+  background: rgba(255, 255, 255, 0.08);
+
+  border: 1px solid rgba(255, 255, 255, 0.16);
+
+  border-radius: 14px;
+
+  cursor: pointer;
+
+  padding: 0;
+
+  flex-shrink: 0;
+
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.08),
+    0 8px 20px rgba(0,0,0,0.28);
+}
+
+.hamburger:hover {
+  background: rgba(203, 55, 133, 0.14);
+  border-color: rgba(203, 55, 133, 0.35);
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 10px 24px rgba(203,55,133,0.18);
+}
+
+.hamburger span {
+  display: block;
+
+  width: 20px;
+  height: 2px;
+
+  background: rgba(255, 255, 255, 0.92);
+
+  border-radius: 999px;
+
+  transition:
+    transform 0.35s cubic-bezier(0.23, 1, 0.32, 1),
+    opacity 0.25s ease,
+    width 0.3s ease;
+
+  transform-origin: center;
+}
+
+/* ── Animate to × ── */
+
+.hamburger--open {
+  background: rgba(203, 55, 133, 0.14);
+  border-color: rgba(203, 55, 133, 0.35);
+}
+
+.hamburger--open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger--open span:nth-child(2) {
+  opacity: 0;
+  width: 0;
+}
+
+.hamburger--open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+
+/* ==========================================================================
+   MOBILE OVERLAY
+   ========================================================================== */
+
+.mobile-menu-overlay {
+  position: fixed;
+  inset: 0;
+
+  z-index: 998;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0,0,0,0.72),
+      rgba(0,0,0,0.58)
+    );
+
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  opacity: 0;
+  pointer-events: none;
+
+  transition:
+    opacity 0.35s ease;
+}
+
+.mobile-menu-overlay--open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+
+/* ==========================================================================
+   MOBILE DRAWER
+   ========================================================================== */
+
+.mobile-drawer {
+  position: fixed;
+
+  top: 0;
+  right: 0;
+  bottom: 0;
+
+  width: min(340px, 88vw);
+
+  z-index: 999;
+
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(203,55,133,0.18),
+      transparent 42%
+    ),
+    linear-gradient(
+      160deg,
+      rgba(18,18,22,0.96) 0%,
+      rgba(10,10,14,0.94) 100%
+    );
+
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+
+  border-left: 1px solid rgba(255, 255, 255, 0.10);
+
+  box-shadow:
+    -20px 0 60px rgba(0,0,0,0.55);
+
+  transform: translateX(100%);
+
+  transition:
+    transform 0.45s cubic-bezier(0.23, 1, 0.32, 1);
+
+  overflow-y: auto;
+}
+
+.mobile-drawer--open {
+  transform: translateX(0);
+}
+
+/* FIX 1: justify-content changed from center → flex-start
+   so links stack from the top and Home is never clipped.
+   padding-top kept at 80px to clear the × close button. */
+.mobile-drawer__inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  min-height: 100%;
+
+  padding: 80px 20px 40px;
+
+  gap: 10px;
+}
+
+
+/* ==========================================================================
+   MOBILE DRAWER LINKS
+   ========================================================================== */
+
+/* FIX 2: removed the stray padding/border-radius/font-size that
+   were accidentally placed on the container instead of the links. */
+.mobile-drawer__links {
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+
+  margin-bottom: 28px;
+}
+
+/* FIX 3: arrow icons hidden */
+.mobile-drawer__link svg,
+.mobile-drawer__link img,
+.mobile-drawer__link .arrow,
+.mobile-drawer__link [class*="arrow"] {
+  display: none;
+}
+
+/* FIX 4: padding, size and polish now correctly on the link itself */
+.mobile-drawer__link {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  padding: 13px 18px;
+
+  border-radius: 14px;
+
+  text-decoration: none;
+
+  color: rgba(255, 255, 255, 0.70);
+
+  font-size: 0.92rem;
+  font-weight: 600;
+
+  letter-spacing: 0.1px;
+
+  border: 1px solid rgba(255,255,255,0.06);
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,0.05),
+      rgba(255,255,255,0.02)
+    );
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  /* subtle left accent line for polish */
+  box-shadow:
+    inset 3px 0 0 rgba(255,255,255,0.08);
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease,
+    box-shadow 0.25s ease;
+
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.mobile-drawer--open .mobile-drawer__link {
+  opacity: 1;
+  transform: translateX(0);
+
+  transition:
+    opacity 0.35s ease calc(0.1s + var(--i) * 0.06s),
+    transform 0.35s cubic-bezier(0.23, 1, 0.32, 1) calc(0.1s + var(--i) * 0.06s),
+    background 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.mobile-drawer__link:hover {
+  color: #fff;
+
+  transform: translateX(4px);
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(203,55,133,0.12),
+      rgba(255,255,255,0.03)
+    );
+
+  border-color: rgba(203,55,133,0.22);
+
+  box-shadow:
+    inset 3px 0 0 rgba(203,55,133,0.6);
+}
+
+.mobile-drawer__link.active {
+  color: #fff;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(203,55,133,0.18),
+      rgba(255,255,255,0.04)
+    );
+
+  border-color: rgba(203,55,133,0.32);
+
+  box-shadow:
+    inset 3px 0 0 rgba(203,55,133,0.9),
+    0 8px 20px rgba(203,55,133,0.12);
+}
+
+
+/* ==========================================================================
+   MOBILE DRAWER CTA
+   ========================================================================== */
+
+.mobile-drawer__cta {
+  width: 100%;
+
+  padding: 16px 24px;
+
+  border-radius: 999px;
+
+  border: none;
+
+  background: var(--gradient-brand);
+
+  color: #fff;
+
+  font-size: 1rem;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 12px 30px rgba(203, 55, 133, 0.34);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+.mobile-drawer--open .mobile-drawer__cta {
+  opacity: 1;
+  transform: translateY(0);
+
+  transition:
+    opacity 0.35s ease 0.45s,
+    transform 0.35s cubic-bezier(0.23, 1, 0.32, 1) 0.45s,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+
+.mobile-drawer__cta:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 16px 36px rgba(203, 55, 133, 0.52);
+}
+
+
+/* ==========================================================================
+   RESPONSIVE
    ========================================================================== */
 
 @media (max-width: 768px) {
-  .header-wrapper { top: 80px; padding: 12px 20px; }
 
-  .header {
-    height: auto;
-    padding: 18px;
-    flex-wrap: wrap;
-    gap: 16px;
-    border-radius: 28px;
+  .header-wrapper {
+    top: 80px;
+    padding: 12px 16px;
   }
 
-  .nav {
-    width: 100%;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 20px;
+  .header {
+    height: 64px;
+    padding: 0 20px;
+    border-radius: 999px;
+    flex-wrap: nowrap;
+  }
+
+  .nav,
+  .desktop-btn {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  /* Drawer opens below the header, not from top of viewport */
+  .mobile-drawer {
+    top: 168px; /* 80px wrapper-top + 12px pad + 64px header + 12px pad */
+    border-radius: 20px 0 0 20px;
+  }
+
+  .mobile-drawer__inner {
+    padding: 24px 20px 40px; /* no close button above — minimal top padding */
   }
 }
 
 @media (max-width: 480px) {
-  .header-wrapper { top: 74px; padding: 10px 14px; }
 
-  .nav a { font-size: 14px; }
+  .header-wrapper {
+    top: 74px;
+    padding: 10px 12px;
+  }
 
-  .btn { width: 100%; }
+  .logo {
+    width: 120px;
+  }
+
+  .mobile-drawer {
+    width: min(300px, 90vw);
+  }
+
+  .mobile-drawer__inner {
+    padding: 80px 16px 36px;
+  }
 }
 
 @media (max-width: 360px) {
-  .header-wrapper { top: 68px; }
+
+  .header-wrapper {
+    top: 68px;
+  }
 }

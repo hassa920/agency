@@ -6,14 +6,11 @@
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
   z-index: 9999;
+  overflow-y: auto;
+  overflow-x: hidden;
+
   animation: fadeIn 0.25s ease;
-  padding: 16px;
-  box-sizing: border-box;
 }
 
 @keyframes fadeIn {
@@ -27,15 +24,14 @@
   color: var(--color-text);
 
   border-radius: 16px;
-  padding: 48px 44px 40px;
-  width: 100%;
+  padding: 40px 44px 40px;
+
+  width: calc(100% - 48px);   /* 24px gap on each side */
   max-width: 640px;
-  max-height: 90vh;
-  overflow-y: auto;
+  margin: 40px auto;           /* centers horizontally + 40px from top/bottom */
 
   position: relative;
 
-  /* ✨ upgraded graphic style */
   border: 1px solid rgba(203, 55, 133, 0.25);
   background-image:
     radial-gradient(circle at top left, rgba(203,55,133,0.10), transparent 40%),
@@ -50,12 +46,8 @@
 }
 
 /* scrollbar */
-.popup-container::-webkit-scrollbar {
-  width: 4px;
-}
-.popup-container::-webkit-scrollbar-track {
-  background: transparent;
-}
+.popup-container::-webkit-scrollbar { width: 4px; }
+.popup-container::-webkit-scrollbar-track { background: transparent; }
 .popup-container::-webkit-scrollbar-thumb {
   background: rgba(203, 55, 133, 0.35);
   border-radius: 4px;
@@ -66,49 +58,47 @@
   to   { opacity: 1; transform: translateY(0); }
 }
 
+/* ===== TITLE + CLOSE BUTTON ROW ===== */
+.popup-title {
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  margin: 0 0 28px 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 /* ===== CLOSE BUTTON ===== */
 .popup-close {
-  position: absolute;
-  top: 16px;
-  right: 20px;
+  position: static;
+  flex-shrink: 0;
 
   background: rgba(203, 55, 133, 0.08);
   border: 1px solid rgba(203, 55, 133, 0.25);
 
   font-size: 20px;
   color: var(--color-text);
+  -webkit-text-fill-color: var(--color-text);
 
   cursor: pointer;
   line-height: 1;
   padding: 6px 10px;
   border-radius: 8px;
-
   transition: all 0.2s ease;
 }
 
 .popup-close:hover {
   background: rgba(203, 55, 133, 0.15);
   transform: scale(1.05);
-}
-
-/* ===== TITLE ===== */
-.popup-title {
-  font-size: 2rem;
-  font-weight: 800;
-
-  color: var(--color-text);
-  line-height: 1.2;
-
-  margin: 0 0 28px 0;
-  letter-spacing: -0.5px;
-
-  padding-right: 32px;
-
-  /* ✨ brand gradient like contact page */
-  background: var(--gradient-brand);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
 
 /* ===== FORM LAYOUT ===== */
@@ -131,35 +121,28 @@
   gap: 7px;
 }
 
-/* labels */
 .popup-field label {
   font-size: 0.85rem;
   font-weight: 600;
   color: var(--color-text-muted);
 }
 
-/* inputs */
 .popup-field input,
 .popup-field textarea {
   background: rgba(203, 55, 133, 0.05);
-
   border: none;
   border-bottom: 1px solid rgba(203, 55, 133, 0.35);
-
   padding: 12px 14px;
   font-size: 0.95rem;
   color: var(--color-text);
-
   outline: none;
   transition: all 0.25s ease;
-
   border-radius: 8px 8px 0 0;
 }
 
 .popup-field input:focus,
 .popup-field textarea:focus {
   border-bottom-color: var(--color-primary);
-
   box-shadow: 0 10px 20px rgba(203, 55, 133, 0.12);
   background: rgba(203, 55, 133, 0.08);
 }
@@ -176,19 +159,14 @@
 
   background: var(--gradient-brand);
   color: #fff;
-
   border: none;
   border-radius: var(--radius-pill);
-
   padding: 13px 28px;
   font-size: 1rem;
   font-weight: 700;
-
   cursor: pointer;
   width: fit-content;
-
   transition: all 0.25s ease;
-
   box-shadow: 0 8px 22px rgba(203, 55, 133, 0.25);
 }
 
@@ -203,23 +181,13 @@
   transform: none;
 }
 
-/* arrow */
-.popup-send-arrow {
-  font-size: 1.1rem;
-  display: flex;
-  align-items: center;
-}
-
 /* ===== FEEDBACK ===== */
 .popup-success {
   background: rgba(74, 222, 128, 0.08);
   color: #86efac;
-
   border: 1px solid rgba(74, 222, 128, 0.25);
-
   border-radius: 10px;
   padding: 10px 16px;
-
   font-size: 0.9rem;
   margin-bottom: 4px;
 }
@@ -227,27 +195,20 @@
 .popup-error {
   background: rgba(248, 113, 113, 0.08);
   color: #f87171;
-
   border: 1px solid rgba(248, 113, 113, 0.25);
-
   border-radius: 10px;
   padding: 10px 16px;
-
   font-size: 0.9rem;
   margin-bottom: 4px;
 }
 
-/* ===== RESPONSIVE (unchanged) ===== */
+/* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
-  .popup-overlay {
-    padding: 12px;
-    align-items: flex-end;
-  }
-
   .popup-container {
-    padding: 36px 28px 32px;
-    max-height: 92vh;
-    border-radius: 20px 20px 12px 12px;
+    padding: 32px 28px 28px;
+    width: calc(100% - 32px);
+    margin: 24px auto;
+    border-radius: 16px;
   }
 
   .popup-title {
@@ -256,15 +217,11 @@
 }
 
 @media (max-width: 600px) {
-  .popup-overlay {
-    padding: 0;
-    align-items: flex-end;
-  }
-
   .popup-container {
-    padding: 28px 18px 24px;
-    border-radius: 20px 20px 0 0;
-    width: 100%;
+    padding: 24px 18px 20px;
+    width: calc(100% - 32px);
+    margin: 20px auto;
+    border-radius: 16px;
   }
 
   .popup-row {

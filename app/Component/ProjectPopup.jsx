@@ -56,7 +56,7 @@ const ProjectPopup = ({ isOpen, onClose }) => {
       <div className="popup-container" onClick={(e) => e.stopPropagation()}>
         <button className="popup-close" onClick={onClose}>&#x2715;</button>
 
-        <h1 className="popup-title">Let start project together!</h1>
+        <h1 className="popup-title">Let's start project together!</h1>
 
         {success && <p className="popup-success">✅ Your message has been sent!</p>}
         {error && <p className="popup-error">❌ {error}</p>}

@@ -9,56 +9,130 @@ import ProjectPopup from './ProjectPopup'
 const Header = () => {
   const pathname = usePathname()
   const [isPopupOpen, setIsPopupOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
   const wrapperRef = useRef(null)
 
   useEffect(() => {
     const updateOffset = () => {
       if (!wrapperRef.current) return
-      // wrapper ka actual bottom position + 20px breathing room
       const rect = wrapperRef.current.getBoundingClientRect()
       const offset = rect.bottom + 20
       document.documentElement.style.setProperty('--header-offset', `${offset}px`)
     }
 
-    // pehli baar run karo
     updateOffset()
 
-    // har resize pe update (mobile rotate bhi cover hoga)
     const observer = new ResizeObserver(updateOffset)
     if (wrapperRef.current) observer.observe(wrapperRef.current)
 
     return () => observer.disconnect()
   }, [])
 
+  // close menu on route change
+  useEffect(() => {
+    setIsMenuOpen(false)
+  }, [pathname])
+
+  // lock body scroll when menu open
+  useEffect(() => {
+    document.body.style.overflow = isMenuOpen ? 'hidden' : ''
+    return () => { document.body.style.overflow = '' }
+  }, [isMenuOpen])
+
+  const navLinks = [
+    { href: '/',          label: 'Home'      },
+    { href: '/services',  label: 'Services'  },
+    { href: '/project',   label: 'Portfolio' },
+    { href: '/about',     label: 'About'     },
+    { href: '/contact',   label: 'Contact'   },
+  ]
+
   return (
-    <div className='header-wrapper' ref={wrapperRef}>
-      <header className="header">
-        <Image
-          src="/images/logo.png"
-          alt="logo"
-          className='logo'
-          width={200}
-          height={40}
-        />
+    <>
+      <div className='header-wrapper' ref={wrapperRef}>
+        <header className="header">
 
-        <nav className="nav">
-          <Link href="/" className={pathname === '/' ? 'active' : ''}>Home</Link>
-          <Link href="/services" className={pathname === '/services' ? 'active' : ''}>Services</Link>
-          <Link href="/project" className={pathname === '/project' ? 'active' : ''}>Portfolio</Link>
-          <Link href="/about" className={pathname === '/about' ? 'active' : ''}>About</Link>
-          <Link href="/contact" className={pathname === '/contact' ? 'active' : ''}>Contact</Link>
-        </nav>
+          {/* Logo */}
+          <Image
+            src="/images/logo.png"
+            alt="logo"
+            className='logo'
+            width={200}
+            height={40}
+          />
 
-        <button className="btn" onClick={() => setIsPopupOpen(true)}>
-          Start Now
-        </button>
-      </header>
+          {/* Desktop nav */}
+          <nav className="nav">
+            {navLinks.map(({ href, label }) => (
+              <Link
+                key={href}
+                href={href}
+                className={pathname === href ? 'active' : ''}
+              >
+                {label}
+              </Link>
+            ))}
+          </nav>
+
+          {/* Desktop CTA */}
+          <button className="btn desktop-btn" onClick={() => setIsPopupOpen(true)}>
+            Start Now
+          </button>
+
+          {/* Hamburger — mobile only */}
+          <button
+            className={`hamburger ${isMenuOpen ? 'hamburger--open' : ''}`}
+            onClick={() => setIsMenuOpen(prev => !prev)}
+            aria-label="Toggle menu"
+          >
+            <span /><span /><span />
+          </button>
+
+        </header>
+      </div>
+
+      {/* Mobile Menu Overlay */}
+      <div
+        className={`mobile-menu-overlay ${isMenuOpen ? 'mobile-menu-overlay--open' : ''}`}
+        onClick={() => setIsMenuOpen(false)}
+      />
+
+      {/* Mobile Drawer */}
+      <nav className={`mobile-drawer ${isMenuOpen ? 'mobile-drawer--open' : ''}`}>
+        <div className="mobile-drawer__inner">
+
+          <div className="mobile-drawer__links">
+            {navLinks.map(({ href, label }, i) => (
+              <Link
+                key={href}
+                href={href}
+                className={`mobile-drawer__link ${pathname === href ? 'active' : ''}`}
+                style={{ '--i': i }}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {label}
+                <svg className="mobile-drawer__arrow" viewBox="0 0 24 24" fill="none">
+                  <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </Link>
+            ))}
+          </div>
+
+          <button
+            className="mobile-drawer__cta"
+            onClick={() => { setIsMenuOpen(false); setIsPopupOpen(true) }}
+          >
+            Start Now
+          </button>
+
+        </div>
+      </nav>
 
       <ProjectPopup
         isOpen={isPopupOpen}
         onClose={() => setIsPopupOpen(false)}
       />
-    </div>
+    </>
   )
 }
 
