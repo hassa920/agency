@@ -724,7 +724,9 @@ h1{
    ============================================================================ */
 
 @media (min-width: 768px) {
-  .main-title        { font-size: 3rem; }
+  .main-title        { font-size: 3rem; 
+  padding: 30px;
+  }
   .middle-row        { flex-direction: row; justify-content: center; text-align: left; gap: 40px; }
   .gradient-title    { font-size: 7rem; }
   .description       { text-align: left; }

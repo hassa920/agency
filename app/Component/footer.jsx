@@ -80,8 +80,13 @@ export default function Footer() {
           <div className="footer-column">
             <h3 className="footer-column-title">Company:</h3>
             <ul className="footer-link-list">
-              <li><Link href="/about" className="footer-link">About Us</Link></li>
-              <li><Link href="/contact" className="footer-link">Get in Touch</Link></li>
+              <li><Link href="/" className="footer-link">Home</Link></li>
+              <li><Link href="/services" className="footer-link">Services</Link></li>
+                            <li><Link href="/project" className="footer-link">Portfolio</Link></li>
+              <li><Link href="/about" className="footer-link">About</Link></li>
+
+              <li><Link href="/contact" className="footer-link">Contact</Link></li>
+
             </ul>
           </div>
 

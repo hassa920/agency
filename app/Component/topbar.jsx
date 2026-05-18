@@ -13,7 +13,7 @@ const TopBar = () => {
 
         <div className="topbar-left">
           <FiZap size={16} className="topbar-icon" />
-          <span>Empowering Businesses Since 2016</span>
+          <span>Empowering Businesses Since 2026</span>
         </div>
 
         <div className="topbar-right">
