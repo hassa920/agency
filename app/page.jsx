@@ -19,10 +19,10 @@ export default function Home() {
 
   useEffect(() => {
     const dots = [
-      { ref: dot1Ref, offset: 0   },   // 0°   se start
-      { ref: dot2Ref, offset: 90  },   // 90°  se start
-      { ref: dot3Ref, offset: 180 },   // 180° se start
-      { ref: dot4Ref, offset: 270 },   // 270° se start
+      { ref: dot1Ref, offset: 0   },   
+      { ref: dot2Ref, offset: 90  },   
+      { ref: dot3Ref, offset: 180 },   
+      { ref: dot4Ref, offset: 270 },   
     ];
 
     const animate = () => {
@@ -109,15 +109,13 @@ export default function Home() {
     "Reliable support"
   ];
 
+  // FIX 1: Updated path locations targeting files in public folder roots
   const images = [
-    "https://yoursaio.com/wp-content/uploads/2026/02/Jc-publishing-356x396.jpg",
-    "https://yoursaio.com/wp-content/uploads/2025/12/Snake-356x396.jpg",
-    "https://yoursaio.com/wp-content/uploads/2024/09/Hausers-356x396.webp",
-    "https://yoursaio.com/wp-content/uploads/2024/09/Bp-gas-356x396.webp",
-    "https://yoursaio.com/wp-content/uploads/2026/02/Jc-publishing-356x396.jpg",
-    "https://yoursaio.com/wp-content/uploads/2025/12/Snake-356x396.jpg",
-    "https://yoursaio.com/wp-content/uploads/2024/09/Hausers-356x396.webp",
-    "https://yoursaio.com/wp-content/uploads/2024/09/Bp-gas-356x396.webp",
+    // "/images/urban.jpg", 
+    "/images/snake.jpg",
+    "/images/next.jpg",
+    "/images/precision.jpg",
+    "/images/prime.jpg"
   ];
 
   const [index, setIndex] = useState(1);
@@ -182,7 +180,6 @@ export default function Home() {
           <div className="hp-circle-wrapper">
             <div className="hp-circle">
 
-              {/* 4 animated orbiting dots — sab circle ke gird ghoomte hain */}
               <div ref={dot1Ref} style={dotStyle} />
               <div ref={dot2Ref} style={dotStyle} />
               <div ref={dot3Ref} style={dotStyle} />
@@ -208,7 +205,15 @@ export default function Home() {
         <div className="carousel-track">
           {images.map((src, i) => (
             <div key={i} className={getClass(i)}>
-              <img src={src} alt="project" />
+              {/* FIX 2: Upgraded element to the Next.js optimized <Image /> component */}
+              <Image 
+                src={src} 
+                alt="project layout asset" 
+                width={600} 
+                height={400} 
+                priority={i === 1}
+                style={{ objectFit: 'cover', width: '100%', height: '100%' }}
+              />
             </div>
           ))}
         </div>

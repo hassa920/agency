@@ -5,12 +5,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { projectsData } from "../data/projectsData";
 
-const ventures = Array.from({ length: 4 }).flatMap((_, pageIndex) =>
-  projectsData.map((venture, ventureIndex) => ({
-    ...venture,
-    id: pageIndex * projectsData.length + ventureIndex + 1,
-  }))
-);
+// Maps directly over projectsData without duplicating it 4 times
+const ventures = projectsData.map((venture, ventureIndex) => ({
+  ...venture,
+  id: ventureIndex + 1,
+}));
 
 const PortfolioVentures = () => {
   return (
@@ -49,9 +48,6 @@ const PortfolioVentures = () => {
             </article>
           ))}
         </div>
-
-     
-     
       </div>
     </section>
   );

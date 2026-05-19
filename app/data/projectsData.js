@@ -5,8 +5,7 @@ export const projectsData = [
     slug: "urban-clean-co",
     description:
       "Urban Clean Co. partnered with us to build a stronger online identity and attract more local customers through targeted digital strategies.",
-    image:
-      "https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=1200&q=80",
+    image: "/images/urban.jpg", // Updated to point to your local file in the public folder (adjust extension if it is .png or .webp)
     tag: "Digital Strategy",
     clientGoals: [
       "Rank higher on local search results for cleaning and waste management services",
@@ -61,7 +60,7 @@ export const projectsData = [
     description:
       "We helped Wildlife Experience Hub modernize their website and improve engagement with a cleaner user experience.",
     image:
-      "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1200&q=80",
+      "/images/snake.jpg",
     tag: "Web Experience",
     clientGoals: [
       "Modernize outdated website design",
@@ -114,7 +113,7 @@ export const projectsData = [
     description:
       "Our team enhanced Precision Build Group's digital presence with optimized content and performance-focused design.",
     image:
-      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80",
+      "/images/precision.jpg",
     tag: "Growth Optimization",
     clientGoals: [
       "Increase online visibility for construction services",
@@ -166,8 +165,7 @@ export const projectsData = [
     slug: "prime-exterior-services",
     description:
       "We supported Prime Exterior Services in building trust online by improving visibility and brand consistency.",
-    image:
-      "https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=1200&q=80",
+    image:"/images/prime.jpg",
     tag: "Brand Development",
     clientGoals: [
       "Build brand trust and credibility",
@@ -219,8 +217,7 @@ export const projectsData = [
     slug: "nextgen-property-solutions",
     description:
       "NextGen Property Solutions worked with us to generate high-quality leads through better funnel design and targeting.",
-    image:
-      "https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=1200&q=80",
+    image:"/images/next.jpg",
     tag: "Lead Generation",
     clientGoals: [
       "Generate high-quality property leads",
