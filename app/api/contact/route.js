@@ -13,17 +13,17 @@ export async function POST(req) {
     const body = await req.json();
     const { name, company, phone, email, message, projectDetails } = body;
 
-    // ✅ Validation
-    if (!name || !email || (!message && !projectDetails)) {
+    // 1. Validation
+    if (!name || !email || !email.includes("@") || (!message && !projectDetails)) {
       return NextResponse.json(
-        { success: false, message: "Name, email, and message are required." },
+        { success: false, message: "Name, valid email, and message are required." },
         { status: 400 }
       );
     }
 
     const finalMessage = message || projectDetails || "";
 
-    // ✅ Save to MongoDB
+    // 2. Save to MongoDB
     const db = await getDb();
     await db.collection("contacts").insertOne({
       name,
@@ -34,44 +34,64 @@ export async function POST(req) {
       createdAt: new Date(),
     });
 
-    // ✅ Send email to YOU
-    await resend.emails.send({
-      from: "Your App <noreply@yourdomain.com>", // ✅ updated
-      to: "hassamtariq399@gmail.com",
-      subject: "New Contact Form Submission",
-      html: `
-        <h2>New Contact Form Message</h2>
-        <p><b>Name:</b> ${name}</p>
-        <p><b>Email:</b> ${email}</p>
-        <p><b>Phone:</b> ${phone || "N/A"}</p>
-        <p><b>Company:</b> ${company || "N/A"}</p>
-        <p><b>Message:</b> ${finalMessage}</p>
-      `,
-    });
+    // 3. Send confirmation email to USER
+    // We use allSettled so that if one email fails, the process doesn't crash
+    await Promise.allSettled([
+      resend.emails.send({
+        from: "Hassam@domyaio.com",
+        to: email,
+        subject: "We've received your message! ✅",
+        html: `
+          <div style="font-family: sans-serif; max-width: 520px; margin: auto; padding: 32px; border: 1px solid #eee; border-radius: 8px;">
+            <h2 style="color: #1a1a1a;">Thanks, ${name}!</h2>
+            <p style="color: #444; line-height: 1.6;">
+              We've received your message and will get back to you as soon as possible.
+              In the meantime, feel free to explore our services.
+            </p>
+            <div style="background: #f9f9f9; border-left: 4px solid #ccc; padding: 16px; margin: 24px 0; border-radius: 4px;">
+              <p style="margin: 0; color: #555; font-style: italic;">${finalMessage}</p>
+            </div>
+            <p style="color: #444; margin-top: 20px;">Best regards,<br><strong>The Team</strong></p>
+          </div>
+        `,
+      }),
+    ]);
 
-    // ✅ Auto-reply to USER (WORKS FOR ANY EMAIL NOW)
-    await resend.emails.send({
-      from: "Your App <noreply@yourdomain.com>", // ✅ updated
-      to: email,
-      subject: "We received your message",
-      html: `
-        <h3>Thanks ${name}!</h3>
-        <p>We received your message and will get back to you soon.</p>
-        <hr />
-        <p><b>Your message:</b></p>
-        <p>${finalMessage}</p>
-      `,
-    });
+    // 4. Notify the WEB OWNER
+    try {
+      await resend.emails.send({
+        from: "System <Hassam@domyaio.com>",
+        to: "Hassam@domyaio.com",
+        subject: "📬 New Contact Form Submission",
+        html: `
+          <div style="font-family: sans-serif; color: #333; max-width: 520px;">
+            <h3>New Contact Form Lead!</h3>
+            <p>A new user has submitted the contact form:</p>
+            <table style="width: 100%; border-collapse: collapse;">
+              <tr><td style="padding: 8px 0; font-weight: bold;">Name:</td><td>${name}</td></tr>
+              <tr><td style="padding: 8px 0; font-weight: bold;">Email:</td><td>${email}</td></tr>
+              <tr><td style="padding: 8px 0; font-weight: bold;">Phone:</td><td>${phone || "N/A"}</td></tr>
+              <tr><td style="padding: 8px 0; font-weight: bold;">Company:</td><td>${company || "N/A"}</td></tr>
+              <tr><td style="padding: 8px 0; font-weight: bold;">Message:</td><td>${finalMessage}</td></tr>
+            </table>
+            <p style="color: #888; margin-top: 20px; font-size: 13px;"><strong>Time:</strong> ${new Date().toLocaleString()}</p>
+          </div>
+        `,
+      });
+    } catch (adminError) {
+      // Log but don't surface to the user
+      console.error("Admin notification failed to send:", adminError);
+    }
 
     return NextResponse.json(
-      { success: true },
+      { success: true, message: "Your message has been sent successfully!" },
       { status: 200 }
     );
 
   } catch (error) {
     console.error("Contact API Error:", error);
     return NextResponse.json(
-      { success: false, message: "Server error." },
+      { success: false, message: "Server error. Please try again." },
       { status: 500 }
     );
   }
