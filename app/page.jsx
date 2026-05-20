@@ -1,221 +1,475 @@
-"use client"
-import './home.css';
-import Link from 'next/link';
-import React, { useState, useEffect, useRef } from "react";
-import Image from 'next/image';
-import { useRouter } from "next/navigation";
+"use client";
+
+import "./home.css";
+import Link from "next/link";
+import React, {
+  useState,
+  useEffect,
+  useRef,
+} from "react";
+
+import Image from "next/image";
+
+import { useRouter }
+from "next/navigation";
+
+/* ================= DATA ================= */
+
+const plans = [
+  {
+    name: "Starter",
+    price: 399,
+    features: [
+      "AI Growth Setup",
+      "Website Performance Boost",
+      "Social Media Content (2 posts)",
+      "Blog Writing (1 article)",
+    ],
+  },
+
+  {
+    name: "Growth",
+    price: 899,
+    features: [
+      "Advanced AI Optimization",
+      "Full Website Enhancement",
+      "Social Media Content (5 posts)",
+      "Blog Writing (3 articles)",
+    ],
+  },
+
+  {
+    name: "Elite",
+    price: 1399,
+    features: [
+      "Complete AI Marketing System",
+      "Conversion Optimization",
+      "Social Media Content (10 posts)",
+      "Blog Writing (5 articles)",
+    ],
+  },
+];
+
+const services = [
+  {
+    title: "Content Creation",
+
+    description:
+      "Engaging content tailored to your brand voice, audience, and growth goals across key digital channels.",
+
+    isActive: false,
+
+    image:
+      "/images/content.jpg",
+  },
+
+  {
+    title:
+      "Search Growth Strategy",
+
+    description:
+      "Data-led SEO and visibility plans designed to attract qualified traffic and improve long-term discoverability.",
+
+    isActive: true,
+
+    image:
+      "/images/search_growth.jpg",
+  },
+
+  {
+    title:
+      "Modern Web Solutions",
+
+    description:
+      "Fast responsive websites built for performance and conversions.",
+
+    isActive: false,
+
+    image:
+      "/images/modern_web.jpg",
+  },
+];
+
+const items = [
+  "Built for growth",
+
+  "Smart automation",
+
+  "Proven strategies",
+
+  "Reliable support",
+];
+
+const carouselImages = [
+  "/images/search_growth.jpg",
+
+  "/images/creative.png",
+
+  "/images/modern_web.jpg",
+];
 
 export default function Home() {
 
   const router = useRouter();
 
-  /* ── Multi-dot orbital animation ── */
-  const dot1Ref  = useRef(null);
-  const dot2Ref  = useRef(null);
-  const dot3Ref  = useRef(null);
-  const dot4Ref  = useRef(null);
-  const angleRef = useRef(0);
-  const rafRef   = useRef(0);
+  /* ===== ORBIT ===== */
+
+  const dot1Ref =
+    useRef(null);
+
+  const dot2Ref =
+    useRef(null);
+
+  const dot3Ref =
+    useRef(null);
+
+  const dot4Ref =
+    useRef(null);
+
+  const angleRef =
+    useRef(0);
+
+  const rafRef =
+    useRef();
 
   useEffect(() => {
+
     const dots = [
-      { ref: dot1Ref, offset: 0   },   
-      { ref: dot2Ref, offset: 90  },   
-      { ref: dot3Ref, offset: 180 },   
-      { ref: dot4Ref, offset: 270 },   
+
+      {
+        ref: dot1Ref,
+        offset: 0,
+      },
+
+      {
+        ref: dot2Ref,
+        offset: 90,
+      },
+
+      {
+        ref: dot3Ref,
+        offset: 180,
+      },
+
+      {
+        ref: dot4Ref,
+        offset: 270,
+      },
+
     ];
 
+    const radius = 160;
+
     const animate = () => {
-      angleRef.current = (angleRef.current + 0.4) % 360;
 
-      dots.forEach(({ ref, offset }) => {
-        const el = ref.current;
-        if (!el) return;
+      angleRef.current +=
+        0.4;
 
-        const rad = ((angleRef.current + offset) * Math.PI) / 180;
-        const x = 50 + 50 * Math.cos(rad);
-        const y = 50 + 50 * Math.sin(rad);
+      dots.forEach(
+        ({
+          ref,
+          offset,
+        }) => {
 
-        el.style.left = `calc(${x}% - 7px)`;
-        el.style.top  = `calc(${y}% - 7px)`;
-      });
+          const el =
+            ref.current;
 
-      rafRef.current = requestAnimationFrame(animate);
+          if (!el) return;
+
+          const rad =
+            (
+              (
+                angleRef.current +
+                offset
+              ) *
+              Math.PI
+            ) / 180;
+
+          const x =
+            radius *
+            Math.cos(rad);
+
+          const y =
+            radius *
+            Math.sin(rad);
+
+          el.style.transform =
+            `translate(${x}px,${y}px)`;
+
+        }
+      );
+
+      rafRef.current =
+        requestAnimationFrame(
+          animate
+        );
     };
 
-    rafRef.current = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(rafRef.current);
+    animate();
+
+    return () =>
+      cancelAnimationFrame(
+        rafRef.current
+      );
+
   }, []);
 
-  /* ── Data ── */
-  const plans = [
-    {
-      name: 'Starter',
-      price: 399,
-      features: [
-        'AI Growth Setup',
-        'Website Performance Boost',
-        'Social Media Content (2 posts)',
-        'Blog Writing (1 article)',
-      ],
-    },
-    {
-      name: 'Growth',
-      price: 899,
-      features: [
-        'Advanced AI Optimization',
-        'Full Website Enhancement',
-        'Social Media Content (5 posts)',
-        'Blog Writing (3 articles)',
-      ],
-    },
-    {
-      name: 'Elite',
-      price: 1399,
-      features: [
-        'Complete AI Marketing System',
-        'Conversion Optimization',
-        'Social Media Content (10 posts)',
-        'Blog Writing (5 articles)',
-      ],
-    },
-  ];
+  /* ===== CAROUSEL ===== */
 
-  const services = [
-    {
-      title: "Content Creation",
-      description: "Engaging content tailored to your brand voice, audience, and growth goals across key digital channels.",
-      isActive: false,
-      image: "/images/content.jpg"
-    },
-    {
-      title: "Search Growth Strategy",
-      description: "Data-led SEO and visibility plans designed to attract qualified traffic and improve long-term discoverability.",
-      isActive: true,
-      image: "/images/search_growth.jpg"
-    },
-    {
-      title: "Modern Web Solutions",
-      description: "Fast, responsive websites built for performance, clarity, and conversion across every device.",
-      isActive: false,
-      image: "/images/modern_web.jpg"
-    }
-  ];
-
-  const items = [
-    "Built for growth",
-    "Smart automation",
-    "Proven strategies",
-    "Reliable support"
-  ];
-
-  // FIX 1: Updated path locations targeting files in public folder roots
-  const images = [
-    "/images/search_growth.jpg",
-    "/images/creative.png",
-    "/images/modern_web.jpg",
-    "/images/content.jpg",
-  ];
-
-  const [index, setIndex] = useState(1);
+  const [index,
+    setIndex] =
+    useState(1);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setIndex((prev) => (prev + 1) % images.length);
-    }, 2500);
-    return () => clearInterval(interval);
-  }, [images.length]);
 
-  const getClass = (i) => {
-    if (i === index) return "card active";
-    if (i === (index - 1 + images.length) % images.length) return "card left";
-    if (i === (index + 1) % images.length) return "card right";
+    const interval =
+      setInterval(() => {
+
+        setIndex(
+          prev =>
+            (
+              prev + 1
+            ) %
+            carouselImages.length
+        );
+
+      }, 2500);
+
+    return () =>
+      clearInterval(
+        interval
+      );
+
+  }, []);
+
+  const getClass = i => {
+
+    if (i === index)
+      return "card active";
+
+    if (
+      i ===
+      (
+        index -
+        1 +
+        carouselImages.length
+      ) %
+      carouselImages.length
+    )
+      return "card left";
+
+    if (
+      i ===
+      (
+        index +
+        1
+      ) %
+      carouselImages.length
+    )
+      return "card right";
+
     return "card hidden";
   };
 
-  const handleConsultation = () => router.push("/contact");
-  const handleServiceClick = (service) => router.push(`/services#${service.title}`);
+  const slugify =
+    text =>
+      text
+        .toLowerCase()
+        .replace(
+          /\s+/g,
+          "-"
+        );
+
+  const handleConsultation =
+    () =>
+      router.push(
+        "/contact"
+      );
+
+  const handleServiceClick =
+    service =>
+
+      router.push(
+
+        `/services#${
+          slugify(
+            service.title
+          )
+        }`
+      );
 
   const dotStyle = {
-    position: "absolute",
+
+    position:
+      "absolute",
+
+    top: "50%",
+
+    left: "50%",
+
     width: "14px",
+
     height: "14px",
-    background: "#ffffff",
-    borderRadius: "50%",
-    boxShadow: "0 0 18px rgba(255,255,255,0.80)",
-    transition: "none",
+
+    background:
+      "#ffffff",
+
+    borderRadius:
+      "50%",
+
+    margin: "-7px",
+
+    willChange:
+      "transform",
+
+    boxShadow:
+      "0 0 18px rgba(255,255,255,.8)",
   };
 
   return (
+
     <div className="page-root">
 
-      {/* ===== HERO + ORBIT WRAPPER ===== */}
+      {/* HERO */}
+
       <section className="hero-orbit-wrapper">
 
-        {/* ===== HERO ===== */}
         <section className="hero-container">
+
           <div className="orbit-line"></div>
+
           <div className="content-box">
+
             <div className="badge">
+
               <span>✦</span>
+
               Struggling to Scale?
+
               <span>✦</span>
+
             </div>
+
             <h1 className="main-title">
-              Transform Your Digital Presence<br />
-              Into a Powerful Growth Engine<br />
+
+              Transform Your Digital Presence
+
+              <br />
+
+              Into a Powerful Growth Engine
+
+              <br />
+
               That Delivers Real Results.
+
             </h1>
+
             <Link href="/services">
-              <button className="services-btn">
-                <span className='btn-text'>Explore Services</span>
+
+              <button
+                className="services-btn"
+              >
+
+                <span className="btn-text">
+
+                  Explore Services
+
+                </span>
+
               </button>
+
             </Link>
+
           </div>
+
         </section>
 
-        {/* ===== ORBIT SECTION ===== */}
+        {/* ORBIT */}
+
         <section className="hp-orbit-section">
+
           <div className="hp-circle-wrapper">
+
             <div className="hp-circle">
 
-              <div ref={dot1Ref} style={dotStyle} />
-              <div ref={dot2Ref} style={dotStyle} />
-              <div ref={dot3Ref} style={dotStyle} />
-              <div ref={dot4Ref} style={dotStyle} />
+              <div
+                ref={dot1Ref}
+                style={dotStyle}
+              />
+
+              <div
+                ref={dot2Ref}
+                style={dotStyle}
+              />
+
+              <div
+                ref={dot3Ref}
+                style={dotStyle}
+              />
+
+              <div
+                ref={dot4Ref}
+                style={dotStyle}
+              />
 
               <div className="hp-center-logo">
+
                 <Image
-                  src='/images/logo.png'
+                  src="/images/logo.png"
                   width={200}
                   height={100}
                   alt="logo"
+                  priority
                 />
+
               </div>
 
             </div>
+
           </div>
+
         </section>
 
       </section>
 
-      {/* ===== CAROUSEL ===== */}
+      {/* CAROUSEL */}
+
       <div className="carousel">
+
         <div className="carousel-track">
-          {images.map((src, i) => (
-            <div key={i} className={getClass(i)}>
-              {/* FIX 2: Upgraded element to the Next.js optimized <Image /> component */}
-              <Image 
-                src={src} 
-                alt="project layout asset" 
-                width={600} 
-                height={400} 
-                priority={i === 1}
-                style={{ objectFit: 'cover', width: '100%', height: '100%' }}
-              />
-            </div>
-          ))}
+
+          {carouselImages.map(
+            (src, i) => (
+
+              <div
+                key={src}
+                className={
+                  getClass(i)
+                }
+              >
+
+                <Image
+                  src={src}
+                  fill
+                  priority={
+                    i === 1
+                  }
+                  alt="project image"
+                  className="card-image"
+
+                  sizes="
+                  (max-width:768px) 100vw,
+                  (max-width:1200px) 50vw,
+                  380px
+                  "
+                />
+
+              </div>
+            )
+          )}
+
         </div>
+
       </div>
 
       {/* ===== TRUST SECTION ===== */}
