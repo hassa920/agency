@@ -194,3 +194,10 @@ h1, h2 {
 @media (max-width: 360px) {
   :root { --header-offset: 148px; }
 }
+
+p{
+  color: white !important; 
+}
+h1{
+  font-size: 35px !important;
+}
