@@ -154,7 +154,11 @@ const Service = () => {
           </div>
 
           <div className="services-hero-art" aria-hidden="true">
-            <div className="services-main-orb"></div>
+            <img
+              className="services-hero-visual"
+              src="/images/hero_section.png"
+              alt=""
+            />
           </div>
         </div>
       </section>
@@ -166,7 +170,7 @@ const Service = () => {
           <div className="services-offer-grid">
             <article className="services-offer-card">
               <img
-                src="https://images.unsplash.com/photo-1518773553398-650c184e0bb3?auto=format&fit=crop&w=1200&q=80"
+                src="/images/content.jpg"
                 alt="Digital services overview"
               />
             </article>
@@ -227,7 +231,7 @@ const Service = () => {
 
             <div className="services-highlight-bottom">
               <img
-                src="https://images.unsplash.com/photo-1549692520-acc6669e2f0c?auto=format&fit=crop&w=500&q=80"
+                src="/images/creative.png"
                 alt="Creative professional"
               />
 

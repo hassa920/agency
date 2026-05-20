@@ -94,19 +94,13 @@
   height: 12px;
 }
 
-.about-hero-visual {
-  position: relative;
-  min-height: 350px;
-  display: flex;
-  justify-content: center;
-}
-
 .about-hero-photo {
-  position: absolute;
-  right: 2%;
-  top: 50%;
-  transform: translateY(-50%);
-  width: min(340px, 90%);
+  position: relative;
+  right: auto;
+  top: auto;
+  transform: none;
+  width: min(460px, 96%);
+  aspect-ratio: 4 / 3;
   height: auto;
   object-fit: cover;
   border-radius: 22px;
@@ -114,14 +108,12 @@
   box-shadow: 0 20px 50px rgba(203, 55, 133, 0.14), var(--glow-pink);
 }
 
-.about-orb {
-  width: min(410px, 94%);
-  aspect-ratio: 1 / 1;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 35% 35%, rgba(203, 55, 133, 0.4) 0%, rgba(203, 55, 133, 0) 34%),
-    radial-gradient(circle at 65% 45%, rgba(128,  36, 109, 0.5) 0%, rgba(128,  36, 109, 0) 40%);
-  box-shadow: 0 0 70px rgba(203, 55, 133, 0.18);
+.about-hero-visual {
+  position: relative;
+  min-height: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* ── Innovation ──────────────────────────────────── */
@@ -682,7 +674,6 @@
   }
 
   .about-hero-visual { justify-content: flex-start; }
-  .about-orb { width: min(320px, 100%); }
   .about-principles-gem { justify-self: start; }
 
   .about-principles-grid,
@@ -699,8 +690,8 @@
 @media (max-width: 680px) {
   .about-hero { padding: 22px 10px 16px; }
   .about-hero-grid { gap: 16px; }
-  .about-hero-visual { min-height: 250px; }
-  .about-hero-photo { width: min(260px, 84%); border-radius: 14px; }
+  .about-hero-visual { min-height: 0; }
+  .about-hero-photo { width: min(320px, 92%); aspect-ratio: 4 / 3; border-radius: 14px; }
   .about-innovation { padding: 8px 10px 18px; }
   .about-collage { min-height: 210px; }
   .about-collage-small { width: 100px; height: 74px; }

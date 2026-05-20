@@ -34,24 +34,21 @@ const stories = [
     title: "Building Strong Online Presence",
     description:
       "A growing brand needed better visibility. We restructured their digital presence to attract the right audience.",
-    image:
-      "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80",
+    image: "/images/online_presence.png",
   },
   {
     id: "story-2",
     title: "Improving Conversion Flow",
     description:
       "We optimized user journeys and messaging to turn website visitors into consistent customers.",
-    image:
-      "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=900&q=80",
+    image: "/images/improving_conversion.png",
   },
   {
     id: "story-3",
     title: "Scaling Digital Campaigns",
     description:
       "Through better targeting and automation, campaigns were scaled efficiently while reducing unnecessary costs.",
-    image:
-      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=900&q=80",
+    image: "/images/campagin.png",
   },
 ];
 
@@ -70,10 +67,9 @@ const AboutHero = () => {
         <div className="about-hero-visual" aria-hidden="true">
           <img
             className="about-hero-photo"
-            src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=900&q=80"
+            src="/images/help_business.png"
             alt=""
           />
-          <div className="about-orb"></div>
         </div>
       </div>
     </section>
@@ -87,7 +83,7 @@ const AboutInnovation = () => {
         <div className="about-collage" aria-hidden="true">
           <img
             className="about-collage-main"
-            src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1100&q=80"
+            src="/images/turning.png"
             alt=""
           />
           <img

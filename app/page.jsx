@@ -86,19 +86,19 @@ export default function Home() {
       title: "Content Creation",
       description: "...",
       isActive: false,
-      image: "https://images.unsplash.com/photo-1492724441997-5dc865305da7"
+      image: "/images/content.jpg"
     },
     {
       title: "Search Growth Strategy",
       description: "...",
       isActive: true,
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f"
+      image: "/images/search_growth.jpg"
     },
     {
       title: "Modern Web Solutions",
       description: "...",
       isActive: false,
-      image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085"
+      image: "/images/modern_web.jpg"
     }
   ];
 
@@ -237,9 +237,15 @@ export default function Home() {
         <div className="bottom-row">
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
             <div style={{ display: 'flex', marginLeft: '10px' }}>
-              <div style={{ width: '40px', height: '40px', borderRadius: '50%', border: '2px solid white', backgroundColor: '#555', marginLeft: '-10px' }}></div>
-              <div style={{ width: '40px', height: '40px', borderRadius: '50%', border: '2px solid white', backgroundColor: '#777', marginLeft: '-10px' }}></div>
-              <div style={{ width: '40px', height: '40px', borderRadius: '50%', border: '2px solid white', backgroundColor: '#999', marginLeft: '-10px' }}></div>
+              <div style={{ width: '40px', height: '40px', borderRadius: '50%', border: '2px solid white', marginLeft: '-10px', overflow: 'hidden', backgroundColor: '#1b1b1b', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <Image src="/images/icon_client.jpg" alt="Clients icon" width={22} height={22} />
+              </div>
+              <div style={{ width: '40px', height: '40px', borderRadius: '50%', border: '2px solid white', marginLeft: '-10px', overflow: 'hidden', backgroundColor: '#1b1b1b', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <Image src="/images/icon_trust.jpg" alt="Trust icon" width={22} height={22} />
+              </div>
+              <div style={{ width: '40px', height: '40px', borderRadius: '50%', border: '2px solid white', marginLeft: '-10px', overflow: 'hidden', backgroundColor: '#1b1b1b', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <Image src="/images/icon_growth.png" alt="Growth icon" width={22} height={22} />
+              </div>
             </div>
             <div>
               <p style={{ color: '#aaa', margin: 0, fontSize: '0.8rem' }}>Clients Served</p>

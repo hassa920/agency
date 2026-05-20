@@ -106,7 +106,19 @@
   border-color: rgba(203, 55, 133, 0.50);
 }
 
-.services-hero-art { display: flex; justify-content: center; }
+.services-hero-art { display: flex; justify-content: center; align-items: center; }
+
+.services-hero-visual {
+  width: clamp(220px, 38vw, 430px);
+  height: auto;
+  max-height: min(430px, 50vh);
+  object-fit: cover;
+  border-radius: 16px;
+  border: 1px solid rgba(203, 55, 133, 0.18);
+  box-shadow:
+    0 30px 80px rgba(203, 55, 133, 0.22),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
 
 .services-main-orb {
   width: clamp(220px, 38vw, 430px);
