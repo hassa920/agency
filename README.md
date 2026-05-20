@@ -1,36 +1,78 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# DomyAIO Portfolio (Next.js)
 
-## Getting Started
+Marketing site for [domyaio.com](https://www.domyaio.com/) — services, portfolio, about, and contact with MongoDB + Resend integrations.
 
-First, run the development server:
+## Local development
 
 ```bash
+npm install
+cp .env.example .env.local
+# Edit .env.local with your MongoDB URI and Resend API key
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Production deploy (Vercel recommended)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Push the repo to GitHub and import the project in [Vercel](https://vercel.com).
+2. Set **Environment Variables** (Production + Preview):
+   - `MONGODB_URI` — MongoDB connection string (database name: `agency`)
+   - `RESEND_API_KEY` — from [Resend](https://resend.com)
+3. Verify your sending domain in Resend (`domyaio.com`) so `from` addresses work.
+4. Run a production build locally before shipping:
 
-## Learn More
+   ```bash
+   npm run build
+   npm start
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+5. Point your domain DNS to Vercel and enable HTTPS.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Required assets (add before go-live)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Place these under `public/images/`:
 
-## Deploy on Vercel
+| File | Used for |
+|------|----------|
+| **`logo.png`** | Header, footer, home orbit & trust section |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Optional (replace temporary fallbacks when you have final art):
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| File | Used for |
+|------|----------|
+| `snake.jpg`, `next.jpg`, `precision.jpg`, `prime.jpg`, `urban.jpg` | Home carousel & portfolio case studies |
+
+## Custom font
+
+`app/layout.jsx` loads:
+
+`app/assets/fonts/FormaDJRText-Regular-Testing.otf`
+
+Add that file or update the font path in `layout.jsx`. Without it, the build may fail or fall back to system fonts.
+
+## API routes
+
+| Route | Purpose |
+|-------|---------|
+| `POST /api/contact` | Contact forms (saves to MongoDB, sends Resend emails) |
+| `POST /api/newsletter` | Footer newsletter signup |
+
+## Scripts
+
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Development server |
+| `npm run build` | Production build |
+| `npm start` | Run production server |
+| `npm run lint` | ESLint |
+
+## Pre-launch checklist
+
+- [ ] `logo.png` in `public/images/`
+- [ ] Font file in `app/assets/fonts/`
+- [ ] `MONGODB_URI` and `RESEND_API_KEY` set on host
+- [ ] `npm run build` passes
+- [ ] Test contact form, services form, newsletter, header popup
+- [ ] Update social links to your real Facebook / LinkedIn / Instagram URLs
+- [ ] Replace portfolio/carousel images with final branded assets if using fallbacks

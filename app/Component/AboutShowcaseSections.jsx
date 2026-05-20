@@ -88,12 +88,12 @@ const AboutInnovation = () => {
           />
           <img
             className="about-collage-small about-collage-small-a"
-            src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=600&q=80"
+            src="/images/content.jpg"
             alt=""
           />
           <img
             className="about-collage-small about-collage-small-b"
-            src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80"
+            src="/images/modern_web.jpg"
             alt=""
           />
         </div>

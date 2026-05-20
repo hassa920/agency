@@ -3,6 +3,7 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { getDb } from "../../../lib/db";
+import { escapeHtml } from "../../../lib/escapeHtml";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -22,6 +23,11 @@ export async function POST(req) {
     }
 
     const finalMessage = message || projectDetails || "";
+    const safeName = escapeHtml(name);
+    const safeEmail = escapeHtml(email);
+    const safePhone = escapeHtml(phone || "N/A");
+    const safeCompany = escapeHtml(company || "N/A");
+    const safeMessage = escapeHtml(finalMessage);
 
     // 2. Save to MongoDB
     const db = await getDb();
@@ -43,13 +49,13 @@ export async function POST(req) {
         subject: "We've received your message! ✅",
         html: `
           <div style="font-family: sans-serif; max-width: 520px; margin: auto; padding: 32px; border: 1px solid #eee; border-radius: 8px;">
-            <h2 style="color: #1a1a1a;">Thanks, ${name}!</h2>
+            <h2 style="color: #1a1a1a;">Thanks, ${safeName}!</h2>
             <p style="color: #444; line-height: 1.6;">
               We've received your message and will get back to you as soon as possible.
               In the meantime, feel free to explore our services.
             </p>
             <div style="background: #f9f9f9; border-left: 4px solid #ccc; padding: 16px; margin: 24px 0; border-radius: 4px;">
-              <p style="margin: 0; color: #555; font-style: italic;">${finalMessage}</p>
+              <p style="margin: 0; color: #555; font-style: italic;">${safeMessage}</p>
             </div>
             <p style="color: #444; margin-top: 20px;">Best regards,<br><strong>The Team</strong></p>
           </div>
@@ -68,11 +74,11 @@ export async function POST(req) {
             <h3>New Contact Form Lead!</h3>
             <p>A new user has submitted the contact form:</p>
             <table style="width: 100%; border-collapse: collapse;">
-              <tr><td style="padding: 8px 0; font-weight: bold;">Name:</td><td>${name}</td></tr>
-              <tr><td style="padding: 8px 0; font-weight: bold;">Email:</td><td>${email}</td></tr>
-              <tr><td style="padding: 8px 0; font-weight: bold;">Phone:</td><td>${phone || "N/A"}</td></tr>
-              <tr><td style="padding: 8px 0; font-weight: bold;">Company:</td><td>${company || "N/A"}</td></tr>
-              <tr><td style="padding: 8px 0; font-weight: bold;">Message:</td><td>${finalMessage}</td></tr>
+              <tr><td style="padding: 8px 0; font-weight: bold;">Name:</td><td>${safeName}</td></tr>
+              <tr><td style="padding: 8px 0; font-weight: bold;">Email:</td><td>${safeEmail}</td></tr>
+              <tr><td style="padding: 8px 0; font-weight: bold;">Phone:</td><td>${safePhone}</td></tr>
+              <tr><td style="padding: 8px 0; font-weight: bold;">Company:</td><td>${safeCompany}</td></tr>
+              <tr><td style="padding: 8px 0; font-weight: bold;">Message:</td><td>${safeMessage}</td></tr>
             </table>
             <p style="color: #888; margin-top: 20px; font-size: 13px;"><strong>Time:</strong> ${new Date().toLocaleString()}</p>
           </div>

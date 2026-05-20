@@ -127,14 +127,18 @@ const Contact = () => {
           </div>
 
           <div className="contact-hero-art" aria-hidden="true">
-            <div className="contact-hero-orb"></div>
+            <img
+              className="contact-hero-photo"
+              src="/images/contact.png"
+              alt=""
+            />
           </div>
         </div>
       </section>
 
       <section className="contact-ready-section">
         <div className="contact-ready-container">
-          <h2>Let Connect</h2>
+          <h2>Let&apos;s Connect</h2>
           <div className="contact-info-grid">
             {contactHighlights.map((item) => (
               <article key={item.id} className="contact-info-card">
@@ -226,7 +230,7 @@ const Contact = () => {
                   >
                     <option>Starter Package</option>
                     <option>Growth Package</option>
-                    <option>Enterprise Package</option>
+                    <option>Elite Package</option>
                   </select>
                 </label>
               </div>

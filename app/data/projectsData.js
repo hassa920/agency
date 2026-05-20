@@ -5,7 +5,7 @@ export const projectsData = [
     slug: "urban-clean-co",
     description:
       "Urban Clean Co. partnered with us to build a stronger online identity and attract more local customers through targeted digital strategies.",
-    image: "/images/urban.jpg", // Updated to point to your local file in the public folder (adjust extension if it is .png or .webp)
+    image: "/images/content.jpg",
     tag: "Digital Strategy",
     clientGoals: [
       "Rank higher on local search results for cleaning and waste management services",
@@ -59,8 +59,7 @@ export const projectsData = [
     slug: "wildlife-experience-hub",
     description:
       "We helped Wildlife Experience Hub modernize their website and improve engagement with a cleaner user experience.",
-    image:
-      "/images/snake.jpg",
+    image: "/images/search_growth.jpg",
     tag: "Web Experience",
     clientGoals: [
       "Modernize outdated website design",
@@ -112,8 +111,7 @@ export const projectsData = [
     slug: "precision-build-group",
     description:
       "Our team enhanced Precision Build Group's digital presence with optimized content and performance-focused design.",
-    image:
-      "/images/precision.jpg",
+    image: "/images/modern_web.jpg",
     tag: "Growth Optimization",
     clientGoals: [
       "Increase online visibility for construction services",
@@ -165,7 +163,7 @@ export const projectsData = [
     slug: "prime-exterior-services",
     description:
       "We supported Prime Exterior Services in building trust online by improving visibility and brand consistency.",
-    image:"/images/prime.jpg",
+    image: "/images/hero_section.png",
     tag: "Brand Development",
     clientGoals: [
       "Build brand trust and credibility",
@@ -217,7 +215,7 @@ export const projectsData = [
     slug: "nextgen-property-solutions",
     description:
       "NextGen Property Solutions worked with us to generate high-quality leads through better funnel design and targeting.",
-    image:"/images/next.jpg",
+    image: "/images/creative.png",
     tag: "Lead Generation",
     clientGoals: [
       "Generate high-quality property leads",

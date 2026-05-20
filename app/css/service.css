@@ -439,6 +439,39 @@
 .services-form-message { margin-top: 12px; }
 .services-send-btn { margin-top: 16px; }
 
+.services-form-error {
+  color: #f87171;
+  font-size: 0.87rem;
+  font-weight: 500;
+  margin: 12px 0 0;
+  padding: 10px 14px;
+  background: rgba(248, 113, 113, 0.08);
+  border: 1px solid rgba(248, 113, 113, 0.28);
+  border-radius: 8px;
+}
+
+.services-form-success {
+  color: rgba(134, 239, 172, 0.9);
+  font-size: 0.87rem;
+  font-weight: 500;
+  margin: 12px 0 0;
+  padding: 10px 14px;
+  background: rgba(134, 239, 172, 0.08);
+  border: 1px solid rgba(134, 239, 172, 0.28);
+  border-radius: 8px;
+}
+
+.services-contact-form input:disabled,
+.services-contact-form textarea:disabled {
+  opacity: 0.52;
+  cursor: not-allowed;
+}
+
+.services-send-btn:disabled {
+  opacity: 0.58;
+  cursor: not-allowed;
+}
+
 /* ── Responsive ──────────────────────────────────── */
 @media (max-width: 1024px) {
   .services-hero .services-shell,

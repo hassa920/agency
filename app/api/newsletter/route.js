@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { getDb } from "../../../lib/db";
+import { escapeHtml } from "../../../lib/escapeHtml";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 export const dynamic = "force-dynamic";
@@ -29,6 +30,8 @@ export async function POST(req) {
         { status: 409 }
       );
     }
+
+    const safeEmail = escapeHtml(email);
 
     // 3. Save to MongoDB
     await collection.insertOne({
@@ -66,7 +69,7 @@ export async function POST(req) {
           <div style="font-family: sans-serif; color: #333;">
             <h3>New Lead Acquired!</h3>
             <p>A new user has just subscribed to your newsletter:</p>
-            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Email:</strong> ${safeEmail}</p>
             <p><strong>Time:</strong> ${new Date().toLocaleString()}</p>
           </div>
         `,

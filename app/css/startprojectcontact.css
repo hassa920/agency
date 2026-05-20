@@ -125,6 +125,39 @@
   margin-top: 14px;
 }
 
+.start-project-form-error {
+  color: #f87171;
+  font-size: 0.87rem;
+  font-weight: 500;
+  margin: 12px 0 0;
+  padding: 10px 14px;
+  background: rgba(248, 113, 113, 0.08);
+  border: 1px solid rgba(248, 113, 113, 0.28);
+  border-radius: 8px;
+}
+
+.start-project-form-success {
+  color: rgba(134, 239, 172, 0.9);
+  font-size: 0.87rem;
+  font-weight: 500;
+  margin: 12px 0 0;
+  padding: 10px 14px;
+  background: rgba(134, 239, 172, 0.08);
+  border: 1px solid rgba(134, 239, 172, 0.28);
+  border-radius: 8px;
+}
+
+.start-project-form input:disabled,
+.start-project-form textarea:disabled {
+  opacity: 0.52;
+  cursor: not-allowed;
+}
+
+.start-project-submit-btn:disabled {
+  opacity: 0.58;
+  cursor: not-allowed;
+}
+
 .start-project-submit-btn {
   margin-top: 16px;
   border: 1px solid var(--color-primary);

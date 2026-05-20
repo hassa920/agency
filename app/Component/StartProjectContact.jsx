@@ -9,11 +9,13 @@ const socialLinks = [
 ];
 
 const StartProjectContact = () => {
-  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState("idle");
+  const [feedbackMsg, setFeedbackMsg] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
+    setStatus("loading");
+    setFeedbackMsg("");
 
     const formData = new FormData(e.target);
 
@@ -34,20 +36,29 @@ const StartProjectContact = () => {
         body: JSON.stringify(data),
       });
 
+      const contentType = res.headers.get("content-type");
+      if (!contentType || !contentType.includes("application/json")) {
+        setStatus("error");
+        setFeedbackMsg("Server error. Please try again later.");
+        return;
+      }
+
       const result = await res.json();
 
       if (result.success) {
-        alert("Message sent successfully!");
-        e.target.reset(); // keeps UI same, just clears form
-      } else {
-        alert("Failed to send message");
+        setStatus("success");
+        setFeedbackMsg(result.message || "Your message has been sent successfully!");
+        e.target.reset();
+        return;
       }
+
+      setStatus("error");
+      setFeedbackMsg(result.message || "Failed to send message.");
     } catch (error) {
       console.error(error);
-      alert("Something went wrong");
+      setStatus("error");
+      setFeedbackMsg("Network error. Please check your connection and try again.");
     }
-
-    setLoading(false);
   };
 
   return (
@@ -81,37 +92,48 @@ const StartProjectContact = () => {
           <div className="start-project-field-grid">
             <label className="start-project-field">
               <span>Your name*</span>
-              <input type="text" name="name" required />
+              <input type="text" name="name" required disabled={status === "loading"} />
             </label>
 
             <label className="start-project-field">
               <span>Company name</span>
-              <input type="text" name="company" />
+              <input type="text" name="company" disabled={status === "loading"} />
             </label>
 
             <label className="start-project-field">
               <span>Phone number*</span>
-              <input type="tel" name="phone" required />
+              <input type="tel" name="phone" required disabled={status === "loading"} />
             </label>
 
             <label className="start-project-field">
               <span>Email address*</span>
-              <input type="email" name="email" required />
+              <input type="email" name="email" required disabled={status === "loading"} />
             </label>
           </div>
 
           <label className="start-project-field start-project-textarea">
             <span>Tell us about your project*</span>
-            <textarea name="message" rows={4} required />
+            <textarea name="message" rows={4} required disabled={status === "loading"} />
           </label>
+
+          {status === "success" && (
+            <p className="start-project-form-success" role="status">
+              {feedbackMsg}
+            </p>
+          )}
+          {status === "error" && (
+            <p className="start-project-form-error" role="alert">
+              {feedbackMsg}
+            </p>
+          )}
 
           <button
             type="submit"
             className="start-project-submit-btn"
-            disabled={loading}
+            disabled={status === "loading"}
           >
             <span className="start-project-submit-icon">→</span>
-            {loading ? "Submitting..." : "Submit"}
+            {status === "loading" ? "Submitting..." : "Submit"}
           </button>
         </form>
       </div>

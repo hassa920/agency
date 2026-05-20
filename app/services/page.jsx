@@ -58,7 +58,8 @@ const Service = () => {
     message: "",
   });
 
-  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState("idle");
+  const [feedbackMsg, setFeedbackMsg] = useState("");
 
   // ✅ HANDLE INPUT
   const handleChange = (e) => {
@@ -72,7 +73,8 @@ const Service = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    setLoading(true);
+    setStatus("loading");
+    setFeedbackMsg("");
 
     try {
       const res = await fetch("/api/contact", {
@@ -83,10 +85,18 @@ const Service = () => {
         body: JSON.stringify(formData),
       });
 
+      const contentType = res.headers.get("content-type");
+      if (!contentType || !contentType.includes("application/json")) {
+        setStatus("error");
+        setFeedbackMsg("Server error. Please try again later.");
+        return;
+      }
+
       const data = await res.json();
 
       if (data.success) {
-        alert("Message sent successfully!");
+        setStatus("success");
+        setFeedbackMsg(data.message || "Your message has been sent successfully!");
         setFormData({
           name: "",
           company: "",
@@ -94,15 +104,15 @@ const Service = () => {
           email: "",
           message: "",
         });
-      } else {
-        alert("Failed to send message");
+        return;
       }
 
+      setStatus("error");
+      setFeedbackMsg(data.message || "Failed to send message.");
     } catch (error) {
       console.error(error);
-      alert("Something went wrong");
-    } finally {
-      setLoading(false);
+      setStatus("error");
+      setFeedbackMsg("Network error. Please check your connection and try again.");
     }
   };
 
@@ -224,7 +234,7 @@ const Service = () => {
               </div>
 
               <img
-                src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80"
+                src="/images/smart.png"
                 alt="Digital team collaboration"
               />
             </div>
@@ -282,9 +292,9 @@ const Service = () => {
             </p>
 
             <div className="services-socials">
-              <a href="#">f</a>
-              <a href="#">in</a>
-              <a href="#">ig</a>
+              <a href="https://www.facebook.com" aria-label="Facebook" target="_blank" rel="noopener noreferrer">f</a>
+              <a href="https://www.linkedin.com" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">in</a>
+              <a href="https://www.instagram.com" aria-label="Instagram" target="_blank" rel="noopener noreferrer">ig</a>
             </div>
           </div>
 
@@ -294,33 +304,51 @@ const Service = () => {
 
               <label>
                 Your name*
-                <input type="text" name="name" value={formData.name} onChange={handleChange} required />
+                <input type="text" name="name" value={formData.name} onChange={handleChange} required disabled={status === "loading"} />
               </label>
 
               <label>
                 Company name
-                <input type="text" name="company" value={formData.company} onChange={handleChange} />
+                <input type="text" name="company" value={formData.company} onChange={handleChange} disabled={status === "loading"} />
               </label>
 
               <label>
                 Phone number*
-                <input type="tel" name="phone" value={formData.phone} onChange={handleChange} required />
+                <input type="tel" name="phone" value={formData.phone} onChange={handleChange} required disabled={status === "loading"} />
               </label>
 
               <label>
                 Email address*
-                <input type="email" name="email" value={formData.email} onChange={handleChange} required />
+                <input type="email" name="email" value={formData.email} onChange={handleChange} required disabled={status === "loading"} />
               </label>
 
             </div>
 
             <label className="services-form-message">
               Tell us about your project*
-              <textarea rows={4} name="message" value={formData.message} onChange={handleChange} required></textarea>
+              <textarea
+                rows={4}
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                required
+                disabled={status === "loading"}
+              ></textarea>
             </label>
 
-            <button type="submit" className="services-send-btn" disabled={loading}>
-              {loading ? "Sending..." : "Submit"}
+            {status === "success" && (
+              <p className="services-form-success" role="status">
+                {feedbackMsg}
+              </p>
+            )}
+            {status === "error" && (
+              <p className="services-form-error" role="alert">
+                {feedbackMsg}
+              </p>
+            )}
+
+            <button type="submit" className="services-send-btn" disabled={status === "loading"}>
+              {status === "loading" ? "Sending..." : "Submit"}
             </button>
 
           </form>

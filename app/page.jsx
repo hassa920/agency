@@ -84,19 +84,19 @@ export default function Home() {
   const services = [
     {
       title: "Content Creation",
-      description: "...",
+      description: "Engaging content tailored to your brand voice, audience, and growth goals across key digital channels.",
       isActive: false,
       image: "/images/content.jpg"
     },
     {
       title: "Search Growth Strategy",
-      description: "...",
+      description: "Data-led SEO and visibility plans designed to attract qualified traffic and improve long-term discoverability.",
       isActive: true,
       image: "/images/search_growth.jpg"
     },
     {
       title: "Modern Web Solutions",
-      description: "...",
+      description: "Fast, responsive websites built for performance, clarity, and conversion across every device.",
       isActive: false,
       image: "/images/modern_web.jpg"
     }
@@ -111,11 +111,10 @@ export default function Home() {
 
   // FIX 1: Updated path locations targeting files in public folder roots
   const images = [
-    // "/images/urban.jpg", 
-    "/images/snake.jpg",
-    "/images/next.jpg",
-    "/images/precision.jpg",
-    "/images/prime.jpg"
+    "/images/search_growth.jpg",
+    "/images/creative.png",
+    "/images/modern_web.jpg",
+    "/images/content.jpg",
   ];
 
   const [index, setIndex] = useState(1);
@@ -301,7 +300,7 @@ export default function Home() {
       </section>
 
       {/* ===== PRICING ===== */}
-      <section>
+      <section id="pricing">
         <div className="pricing-container">
           <h1 className="pricing-title">Flexible Plans For Every Business</h1>
           <div className="pricing-cards-wrapper">

@@ -97,17 +97,20 @@
   border-color: rgba(203, 55, 133, 0.50);
 }
 
-.contact-hero-art { display: flex; justify-content: center; }
+.contact-hero-art {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-.contact-hero-orb {
-  width: min(100%, 410px);
-  aspect-ratio: 1 / 1;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 30% 30%, rgba(66, 82, 220, 0.70) 0%, rgba(66, 82, 220, 0) 36%),
-    radial-gradient(circle at 68% 45%, rgba(203, 55, 133, 0.85) 0%, rgba(203, 55, 133, 0) 34%),
-    radial-gradient(circle at 45% 70%, rgba(128,  36, 109, 0.80) 0%, rgba(128,  36, 109, 0) 38%);
-  box-shadow: 0 0 50px rgba(203, 55, 133, 0.22);
+.contact-hero-photo {
+  width: min(460px, 96%);
+  aspect-ratio: 4 / 3;
+  height: auto;
+  object-fit: cover;
+  border-radius: 22px;
+  border: 1px solid rgba(203, 55, 133, 0.25);
+  box-shadow: 0 20px 50px rgba(203, 55, 133, 0.14), var(--glow-pink);
 }
 
 /* ── Ready section ───────────────────────────────── */
@@ -353,7 +356,7 @@
   .contact-hero-container,
   .contact-details-container { grid-template-columns: 1fr; }
   .contact-hero-art { justify-content: flex-start; }
-  .contact-hero-orb { width: min(340px, 90%); }
+  .contact-hero-photo { width: min(320px, 92%); border-radius: 14px; }
   .contact-details-copy p { max-width: 100%; }
 }
 
