@@ -3,11 +3,18 @@ import React, { useState } from "react";
 import "../css/contact.css";
 import StartProjectContact from "../Component/StartProjectContact";
 import Link from "next/link";
+
 const contactHighlights = [
   {
-    id: "location",
-    title: "Our Office",
-    description: "3900 Pelican Drive, Suite 213, Tyler, TX 75701",
+    id: "location-1",
+    title: "UK Office",
+    description: "142 Central Ave, Hayes UB3 2DB, UK",
+    icon: "📍",
+  },
+  {
+    id: "location-2",
+    title: "USA Office",
+    description: "3900 Pelican Drive,Tyler, TX 75701",
     icon: "📍",
   },
   {
@@ -106,6 +113,7 @@ const Contact = () => {
               We are here to help you grow. Reach out to us through any of the
               available contact options and we will respond as quickly as possible.
             </p>
+
             <div className="contact-hero-actions">
               <button
                 type="button"
@@ -118,11 +126,14 @@ const Contact = () => {
               >
                 Contact Now <span>→</span>
               </button>
-         <Link href="/" className="contact-crumb-btn">
-  Home
-</Link>
-<span style={{ margin: "0 6px" }}>&gt;</span>
-<span className="contact-crumb-btn">Contact</span>
+
+              <Link href="/" className="contact-crumb-btn">
+                Home
+              </Link>
+
+              <span style={{ margin: "0 6px" }}>&gt;</span>
+
+              <span className="contact-crumb-btn">Contact</span>
             </div>
           </div>
 
@@ -139,13 +150,16 @@ const Contact = () => {
       <section className="contact-ready-section">
         <div className="contact-ready-container">
           <h2>Let&apos;s Connect</h2>
+
           <div className="contact-info-grid">
             {contactHighlights.map((item) => (
               <article key={item.id} className="contact-info-card">
                 <div className="contact-info-icon" aria-hidden="true">
                   {item.icon}
                 </div>
+
                 <h3>{item.title}</h3>
+
                 <p>{item.description}</p>
               </article>
             ))}
@@ -157,6 +171,7 @@ const Contact = () => {
         <div className="contact-details-container">
           <div className="contact-details-copy">
             <h2>We are Ready to Help You</h2>
+
             <p>
               Have questions or a project in mind? Send us a message and our
               team will get back to you shortly.
@@ -167,12 +182,15 @@ const Contact = () => {
           {status === "success" ? (
             <div className="contact-success-box">
               <div className="contact-success-icon">✅</div>
+
               <h3>Message Sent!</h3>
+
               <p>
                 Thanks for reaching out. We have received your message and will
                 get back to you within 24 hours. Check your inbox for a
                 confirmation email.
               </p>
+
               <button
                 className="contact-submit-btn"
                 onClick={() => setStatus("idle")}
@@ -181,12 +199,17 @@ const Contact = () => {
               </button>
             </div>
           ) : (
-            <form id="contact-form"  className="contact-details-form" onSubmit={handleSubmit}>
+            <form
+              id="contact-form"
+              className="contact-details-form"
+              onSubmit={handleSubmit}
+            >
               <h3>Start a Conversation</h3>
 
               <div className="contact-details-grid">
                 <label>
                   First Name
+
                   <input
                     type="text"
                     name="firstName"
@@ -197,8 +220,10 @@ const Contact = () => {
                     required
                   />
                 </label>
+
                 <label>
                   Last Name
+
                   <input
                     type="text"
                     name="lastName"
@@ -208,8 +233,10 @@ const Contact = () => {
                     disabled={status === "loading"}
                   />
                 </label>
+
                 <label>
                   Email
+
                   <input
                     type="email"
                     name="mail"
@@ -220,8 +247,10 @@ const Contact = () => {
                     required
                   />
                 </label>
+
                 <label>
                   Service Package
+
                   <select
                     name="package"
                     value={formData.package}
@@ -237,6 +266,7 @@ const Contact = () => {
 
               <label className="contact-details-message">
                 Message
+
                 <textarea
                   name="comment"
                   rows={3}
@@ -250,7 +280,9 @@ const Contact = () => {
 
               {/* ── Error message ── */}
               {status === "error" && (
-                <p className="contact-form-error">❌ {errorMsg}</p>
+                <p className="contact-form-error">
+                  ❌ {errorMsg}
+                </p>
               )}
 
               <button

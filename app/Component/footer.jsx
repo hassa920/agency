@@ -161,7 +161,7 @@ export default function Footer() {
 
             <div className="footer-phone-number">
               <span className="footer-phone-icon">📞</span>
-              <a href="tel:+18885811741" className="footer-phone-link">+1 888 581 1741</a>
+              <a href="tel:+18885811741" className="footer-phone-link">+44 7988582665</a>
             </div>
           </div>
 

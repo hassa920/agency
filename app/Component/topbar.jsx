@@ -13,12 +13,12 @@ const TopBar = () => {
 
         <div className="topbar-left">
           <FiZap size={16} className="topbar-icon" />
-          <span>Empowering Businesses Since 2026</span>
+          <span>Empowering Businesses Since 2022</span>
         </div>
 
         <div className="topbar-right">
           <FiPhone size={16} className="topbar-icon" />
-          <span>Speak with us: <strong>+1 888 581 1741</strong></span>
+          <span>Speak with us: <strong>+44 7988582665</strong></span>
 
           <span className="divider">|</span>
 
