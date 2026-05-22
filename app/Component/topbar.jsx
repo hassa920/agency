@@ -20,9 +20,9 @@ const TopBar = () => {
           <FiPhone size={16} className="topbar-icon" />
           <span>Speak with us: <strong>+44 7988582665</strong></span>
 
-          <span className="divider">|</span>
+          {/* <span className="divider">|</span> */}
 
-          <Link href="https://www.facebook.com" aria-label="Facebook">
+          {/* <Link href="https://www.facebook.com" aria-label="Facebook">
             <FaFacebook size={16} />
           </Link>
 
@@ -32,7 +32,7 @@ const TopBar = () => {
 
           <Link href="https://www.instagram.com" aria-label="Instagram">
             <FaInstagram size={16} />
-          </Link>
+          </Link> */}
         </div>
 
       </div>

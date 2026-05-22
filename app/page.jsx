@@ -18,7 +18,7 @@ from "next/navigation";
 const plans = [
   {
     name: "Starter",
-    price: 399,
+    price: 299,
     features: [
       "AI Growth Setup",
       "Website Performance Boost",

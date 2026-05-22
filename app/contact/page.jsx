@@ -26,7 +26,7 @@ const contactHighlights = [
   {
     id: "phone",
     title: "Call Us",
-    description: "+1 888 581 1741",
+    description: "+44 7988582665",
     icon: "📞",
   },
 ];
