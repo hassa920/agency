@@ -563,7 +563,7 @@ export default function Home() {
                 <div className="plan-badge">{plan.name}</div>
                 <h2 className="plan-name">{plan.name}</h2>
                 <div className="pricing-amount">
-                  <span className="currency">$</span>
+                  <span className="currency">£</span>
                   <span className="price">{plan.price}</span>
                   <span className="period">/month</span>
                 </div>
